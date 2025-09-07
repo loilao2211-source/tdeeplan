@@ -1,9 +1,17 @@
 {
   "rewrites": [
-    { "source": "/",        "destination": "/HTML/index.html" },
-    { "source": "/vip",     "destination": "/HTML/vip.html" },
-    { "source": "/blog",    "destination": "/HTML/blog.html" },
-    { "source": "/gym",     "destination": "/HTML/gym/gym.html" },
-    { "source": "/gym1",    "destination": "/HTML/gym/gym1.html" }
+    { "source": "/",            "destination": "/HTML/index.html" },
+
+    { "source": "/vip",         "destination": "/HTML/vip.html" },
+    { "source": "/vip.html",    "destination": "/HTML/vip.html" },
+
+    { "source": "/blog",        "destination": "/HTML/blog.html" },
+    { "source": "/blog.html",   "destination": "/HTML/blog.html" },
+
+    { "source": "/gym",         "destination": "/HTML/gym/gym.html" },
+    { "source": "/gym.html",    "destination": "/HTML/gym/gym.html" },
+
+    { "source": "/gym1",        "destination": "/HTML/gym/gym1.html" },
+    { "source": "/gym1.html",   "destination": "/HTML/gym/gym1.html" }
   ]
 }
