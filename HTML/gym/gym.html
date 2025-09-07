@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lợi ích của việc tập GYM — Blog</title>
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <!-- Topbar -->
+  <header id="topbar" class="topbar">
+    <button id="hamburgerBtn" aria-controls="menuDrawer" aria-expanded="false"
+      class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white shadow hover:shadow-md">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="sr-only">Mở menu</span>
+    </button>
+    <div class="font-semibold text-gray-700 ml-2">Tiện Ích</div>
+    <div class="flex-1"></div>
+  </header>
+
+  <!-- Drawer -->
+  <div id="menuDrawer" class="drawer">
+    <div class="drawer-backdrop"></div>
+    <aside class="drawer-panel">
+      <header class="px-4 py-3 font-bold text-lg">Menu</header>
+      <div id="menuBody" class="p-3 space-y-3">
+        <a href="../blog.html" class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-white shadow">📝 Về Blog</a>
+        <a href="../index.html" class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-white shadow">⏪ Về trang chính</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Nội dung bài -->
+  <main id="main-content" class="py-10">
+    <section class="px-4">
+      <div class="max-w-4xl mx-auto">
+        <article class="bg-glass p-8">
+          <header class="mb-6">
+            <h1 class="text-3xl font-bold text-blue-700">Tập gym có tác dụng gì? 10 lợi ích bạn sẽ thấy nếu tập đều</h1>
+            <p class="text-sm text-gray-500 mt-1">Tóm lược & biên tập ngắn gọn</p>
+          </header>
+
+          <p class="text-gray-700 mb-5">
+            Tập luyện thường xuyên (ở nhà hay phòng gym) mang lại lợi ích cho cả sức khỏe thể chất lẫn tinh thần.
+            Dưới đây là 10 điểm nổi bật, trình bày gọn để dễ áp dụng.
+          </p>
+
+          <ol class="list-decimal pl-6 space-y-3 text-gray-800">
+            <li><b>Cải thiện vóc dáng:</b> Cơ thể gọn gàng, săn chắc.</li>
+            <li><b>Tăng cơ bắp:</b> Bài tạ kích thích cơ phát triển khi tăng dần mức nặng.</li>
+            <li><b>Giảm mỡ thừa:</b> Sức mạnh + cardio giúp kiểm soát cân nặng.</li>
+            <li><b>Tâm trạng tốt hơn:</b> Endorphin giúp giảm căng thẳng, lo âu.</li>
+            <li><b>Tim mạch khỏe:</b> Hỗ trợ huyết áp, mỡ máu, độ nhạy insulin.</li>
+            <li><b>Giảm nguy cơ bệnh mạn tính:</b> Đột quỵ, tăng huyết áp, tiểu đường tuýp 2…</li>
+            <li><b>Ngủ ngon hơn:</b> Dễ vào giấc; tránh tập quá sát giờ ngủ.</li>
+            <li><b>Cải thiện đời sống tình dục:</b> Vận động hỗ trợ cân bằng nội tiết.</li>
+            <li><b>Xương chắc khỏe:</b> Kháng lực duy trì mật độ xương, giảm loãng xương.</li>
+            <li><b>Hỗ trợ bỏ thuốc:</b> Tập đều liên quan đến giảm tần suất hút thuốc.</li>
+          </ol>
+
+          <div class="grid md:grid-cols-2 gap-4 my-8">
+            <div class="card-lite p-4">
+              <h3 class="font-semibold">Tập ở nhà hay phòng gym?</h3>
+              <ul class="list-disc pl-5 mt-2 text-sm leading-6">
+                <li><b>Phòng gym:</b> Máy móc đa dạng, có PT/đồng tập hỗ trợ.</li>
+                <li><b>Ở nhà:</b> Linh hoạt thời gian; cần vài dụng cụ cơ bản và kỷ luật.</li>
+              </ul>
+            </div>
+            <div class="card-lite p-4">
+              <h3 class="font-semibold">6 lưu ý an toàn</h3>
+              <ol class="list-decimal pl-5 mt-2 text-sm space-y-1 leading-6">
+                <li>Khởi động kỹ.</li>
+                <li>Không quá sức khi nâng tạ.</li>
+                <li>Hỏi PT khi chưa chắc kỹ thuật.</li>
+                <li>Tập trung nền tảng: thở, core, dáng đúng.</li>
+                <li>Lắng nghe cơ thể để nghỉ/giảm tải.</li>
+                <li>Chuẩn bị vài món sơ cứu cơ bản.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- JS nhỏ cho drawer -->
+  <script>
+    const drawer = document.getElementById('menuDrawer');
+    const btn = document.getElementById('hamburgerBtn');
+    const backdrop = drawer.querySelector('.drawer-backdrop');
+    btn.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    backdrop.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  </script>
+</body>
+</html>

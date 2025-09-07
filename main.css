@@ -1,0 +1,284 @@
+body>.skiptranslate{display:none!important}
+#gtsEl .goog-te-gadget{font-family:inherit;font-size:0}
+#gtsEl .goog-te-gadget>div{border:1px solid var(--contentL);padding:0;border-radius:5px;position:relative;overflow:hidden}
+#\:0\.targetLanguage~*{display:none}
+#gtsEl .goog-te-combo{background:var(--contentB);color:var(--bodyC);margin:0;padding:10px;font-family:inherit;font-size:16px;border-color:transparent;outline:0;width:calc(100% - 10px)}
+.headIc .isGts .tIc{
+  width:32px; height:32px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:8px; background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+  cursor:pointer; padding:0;
+}
+.headIc .isGts .tIc:hover{ box-shadow:0 3px 10px rgba(0,0,0,.12) }
+.headIc .isGts .gt-badge{ width:22px; height:22px; display:block }
+
+.cBkPs .wBkm.sl { position: fixed; left: 12px; top: 56px; z-index: 9999; }
+
+.bg-glass {
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(4px);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px #0001;
+}
+.ads { text-align: center; margin: 24px 0; }
+.vip { background:linear-gradient(90deg,#ffd700,#ff9a00 80%); color:#2d1600; font-weight:bold; }
+.fade { animation: fadein 1s; }
+@keyframes fadein { from{opacity:0;} to{opacity:1;} }
+.fixed-vip { position: fixed; top: 1rem; left: 1rem; z-index:100; }
+.fixed-pdf { position: fixed; top: 1rem; right: 1rem; z-index:100; }
+@media (max-width: 700px) {
+  .fixed-vip, .fixed-pdf { position: static; display:block; margin: 8px auto 8px 8px;}
+  .bg-glass { padding: 1rem; }
+}
+
+#main-content {
+  margin-top: 90px;
+}
+
+
+
+
+.headIc { display:flex; align-items:center; gap:12px; }           /* canh hàng */
+.headIc .isGts { margin-left: 8px; }                              /* đứng cạnh nút login */
+.headIc .isGts .tIc{
+  width: var(--toolbar-btn-h);
+  height: var(--toolbar-btn-h);
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:10px; background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+  padding:0; cursor:pointer;
+}
+.headIc .isGts .tIc:hover{ box-shadow:0 3px 10px rgba(0,0,0,.12) }
+.headIc .isGts .gt-badge{ width:22px; height:22px; display:block }
+
+
+
+/* Ẩn mọi text thừa trong gadget (ví dụ 'Loading...') */
+#gtsEl { font-size: 0; }
+
+iframe.goog-te-banner-frame,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-te-spinner-pos,
+.goog-te-spinner-animation,
+.VIpgJd-ZVi9od-l4eHX-hSRGPd,
+.VIpgJd-ZVi9od-aZ2wEe,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-vH1Gmf-ibnC6b,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS,
+body > .skiptranslate {
+  display:none !important; visibility:hidden !important; opacity:0 !important;
+}
+html, body { top:0 !important; }
+
+/* 2) Ẩn panel khi checkbox tắt (để toolbar không nở) */
+.cBkPs > #offGts:not(:checked) ~ .wBkm { display:none !important; }
+
+/* 3) Gỡ rule cũ cố định panel ở góc trái nếu bạn đã thêm trước đó */
+#header-icon .cBkPs .wBkm { left:auto !important; top:auto !important; position:fixed; }
+
+/* 4) Icon trên toolbar – giữ cân với các nút khác */
+:root { --toolbar-btn-h: 40px; }              /* chỉnh bằng chiều cao nút login */
+.headIc .isGts .tIc{ width:var(--toolbar-btn-h); height:var(--toolbar-btn-h); }
+.headIc .isGts .gt-badge{ width:22px; height:22px; display:block; }
+
+
+.card-lite{
+  background: rgba(255,255,255,0.96);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* Đừng để toolbar (fixed) che phần nội dung khi cuộn tới anchor */
+#landingLayout * { scroll-margin-top: 100px; }
+
+/* Thu gọn padding form trên mobile */
+@media (max-width: 700px){
+  .bg-glass { padding: 1.25rem; }
+}
+
+body{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.36), rgba(255,255,255,0.36)),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  min-height: 100vh;
+}
+
+:root { --planner-width: 770px; 
+        --planner-pad: 14px; }
+#mainApp{
+  width: min(100%, var(--planner-width));
+  margin: 8px auto 28px auto;
+  background: rgba(255,255,255,0.98);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+  padding: var(--planner-pad);
+}
+
+/* Tabs + khu render đều nằm trong card, không tạo box riêng */
+#meal-plan-container,
+#planContent{ width: 100%; }
+
+/* Làm phẳng các khối trung gian nếu có (tránh “cắt khúc”) */
+#meal-plan-container > .bg-glass,
+#meal-plan-container > .card-lite,
+#meal-plan-container > section{
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 6px 0 !important;
+}
+
+/* Card gọn cho Thực đơn / Lịch tập */
+#planContent > *{
+  background: #f8fbff;                   /* hơi xanh nhẹ */
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  padding: 12px;
+  margin: 10px 0;
+  min-height: auto !important;
+}
+
+/* Tiêu đề bên trong card đỡ sát mép */
+#planContent > * h3,
+#planContent > * .section-title{
+  margin: 4px 0 8px;
+}
+
+/* Ẩn dropdown “Số bữa/ngày” dư ở cuối trang (nếu còn) */
+#mealCountWrapper{ display:none !important; }
+
+/* Ẩn Giới thiệu khi vào planner; giữ form tuỳ ý */
+html[data-mode="planner"] #introSection,
+html[data-mode="planner"] #featuresRow,
+html[data-mode="planner"] #howBox{ display:none !important; }
+html[data-mode="planner"] #mainApp{ display:block !important; }
+
+/* Để cả trang gọn hơn trên màn hình thấp (1366x768…) */
+@media (max-height: 820px){
+  :root{ --planner-pad: 12px; }
+  #planContent > *{ padding: 10px; margin: 8px 0; }
+  #mainApp{ margin-top: 6px; margin-bottom: 18px; }
+}
+
+.topbar{
+  position: fixed; inset: 0 0 auto 0; height: 60px;
+  z-index: 120;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+}
+
+/* Đẩy nội dung xuống dưới topbar (ghi đè rule cũ 90px nếu còn) */
+#main-content{ margin-top: 72px; }
+
+/* ===== DRAWER (menu trượt) ===== */
+.drawer{ position: fixed; inset: 0; z-index: 130; pointer-events: none; }
+.drawer-backdrop{
+  position: absolute; inset: 0; background: rgba(0,0,0,.35);
+  opacity: 0; transition: opacity .2s;
+}
+.drawer-panel{
+  position: absolute; top: 0; left: 0; height: 100%; width: 300px;
+  background: rgba(255,255,255,.98);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  transform: translateX(-100%); transition: transform .25s ease;
+  border-top-right-radius: 16px; border-bottom-right-radius: 16px;
+  overflow-y: auto;
+}
+.drawer.open{ pointer-events: auto; }
+.drawer.open .drawer-backdrop{ opacity: 1; }
+.drawer.open .drawer-panel{ transform: translateX(0); }
+
+/* Tooltip FB – tắt trên mobile để khỏi che UI */
+@media (hover:none){ #vipSupport .fb-tip{ display: none !important; } }
+
+/* (tuỳ chọn) căn chỉnh nhẹ các phần tử chuyển vào menu */
+#menuBody > *{ display:block; }
+#menuBody .headP, #menuBody #header-icon{ margin-bottom: 8px; }
+
+#introSection header p{ color:#111827 !important; text-shadow:0 1px 0 rgba(255,255,255,.35); }
+
+
+:root{
+  --contentL:#e5e7eb;  /* viền xám nhạt */
+  --contentB:#ffffff;  /* nền trắng */
+  --bodyC:#111827;     /* chữ xám đậm */
+}
+/* === Google Translate inline (sát icon) === */
+#gtsElInline .goog-te-gadget{ font-size:0; }  /* ẩn chữ "Việt"/"Select Language" */
+#gtsElInline .goog-te-gadget > div{
+  border:1px solid #e5e7eb; padding:0; border-radius:8px; overflow:hidden;
+}
+#gtsElInline .goog-te-combo{
+  background:#fff; color:#111827; margin:0; padding:8px 10px;
+  font-family:inherit; font-size:14px; border:0; outline:0; min-width:140px;
+}
+/* canh hàng với icon */
+li#gtsInline{ display:flex; align-items:center; }
+
+
+
+/* === Drawer: chiều rộng & chiều cao vừa đủ === */
+:root{ --drawer-w: 260px; --drawer-gap: 36px; }  /* đổi 240 -> 220/260 tuỳ thích */
+
+.drawer-panel{
+  width: var(--drawer-w);
+  /* không chiếm full chiều dọc nữa */
+  top: var(--drawer-gap);
+  bottom: auto;
+  height: auto;
+  max-height: calc(100vh - var(--drawer-gap) * 2);
+  overflow-y: auto;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+/* nền mờ giữ nguyên */
+.drawer-backdrop{ background: rgba(0,0,0,.35); }
+
+/* Nút trong menu: tất cả kiểu “icon + chữ” như FB */
+.menu-link{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px;
+  width:100%;
+  background:#fff; border:1px solid #e5e7eb; border-radius:10px;
+  color:#111827; text-align:left;
+}
+.menu-link:hover{ background:#f8fafc; }
+.menu-link .mi{ width:18px; height:18px; flex:0 0 18px; }
+
+/* Nút VIP có badge */
+#vipPopup button[onclick^="becomeVIP"] {
+  position: relative;
+  overflow: visible;     /* cho phép badge tràn ra ngoài */
+}
+
+/* Badge nhỏ, bám góc phải TRÊN nút và đẩy ra ngoài nên không che giá */
+#vipPopup .sale-badge{
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(65%,-45%) rotate(8deg); /* << kéo ra ngoài */
+  width: 100px;               /* có thể 50–60px tuỳ mắt */
+  height: auto;
+  pointer-events: none;      /* không chắn click */
+  z-index: 3;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.25));
+}
+
+/* Trên màn nhỏ, badge gọn lại và đẩy ít hơn một chút */
+@media (max-width: 480px){
+  #vipPopup .sale-badge{
+    transform: translate(55%,-50%) rotate(8deg);
+    width: 46px;
+  }
+}

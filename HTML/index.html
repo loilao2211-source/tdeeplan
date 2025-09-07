@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>TDEE, Meal & Workout Planner Pro</title>
+
+  <script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"
+  }
+}
+</script>
+
+
+  <!-- 1b) CSS, Tailwind, HTML2PDF… -->
+<link rel="stylesheet" href="../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.36); /* Độ mờ nền, giảm nữa nếu muốn rõ hơn */
+  pointer-events: none;
+}
+.bg-glass {
+  background: rgba(255,255,255,0.93);
+  border-radius: 22px;
+  box-shadow: 0 2px 32px 0 rgba(0,0,0,0.09);
+}
+</style>
+
+
+</head>
+
+<body>
+   <header id="topbar" class="topbar">
+  <button id="hamburgerBtn" aria-controls="menuDrawer" aria-expanded="false"
+    class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white shadow hover:shadow-md">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="sr-only">Mở menu</span>
+  </button>
+  <div class="font-semibold text-gray-700 ml-2">Tiện Ích</div>
+  <div class="flex-1"></div>
+</header>
+
+<!-- DRAWER (MENU TRƯỢT) -->
+<div id="menuDrawer" class="drawer">
+  <div class="drawer-backdrop"></div>
+  <aside class="drawer-panel">
+    <header class="px-4 py-3 font-bold text-lg">Menu</header>
+    <div id="menuBody" class="p-3 space-y-3">
+
+      <!-- Google Dịch (giữ nguyên ID để CSS/JS cũ hoạt động) -->
+      <div class="headP section" id="header-icon">
+        <div class="widget TextList" data-version="2" id="TextList000">
+          <ul class="headIc">
+            <li class="isGts">
+              <label aria-label="Translate" class="tIc bIc n" for="offGts">
+                <svg class="line" viewBox="0 0 24 24">
+                  <path d="M.5 2v16c0 .8.7 1.5 1.5 1.5h15L10.5.5H2C1.2.5.5 1.2.5 2z"></path>
+                  <path d="M12 4.5h10c.8 0 1.5.7 1.5 1.5v16c0 .8-.7 1.5-1.5 1.5h-8.5l-1.5-4M17 19.5l-3.5 4M14.5 10.5h7M17.5 9.5v1"></path>
+                  <path d="M20 10.5c0 1.1-1.8 4.4-4 6m0-3.5c.5 1.3 4 4.5 4 4.5m-9.9-10C8.4 6 5.9 6.2 4.5 7.9s-1.2 4.2.4 5.6 4.2 1.2 5.6-.4c.6-.7 1-1.7 1-2.6h-4"></path>
+                </svg>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Các nút: giữ nguyên ID để code cũ điều khiển -->
+      <button id="btnLoginGoogle" type="button"
+        class="w-full bg-blue-600 text-white font-bold px-4 py-3 rounded-lg shadow-lg hover:bg-blue-800">
+        🔑 Đăng nhập với Google
+      </button>
+
+      <button id="becomeVIPBtn" onclick="window.showVipPopup()"
+        class="w-full bg-yellow-400 text-black font-bold px-4 py-3 rounded-lg" style="display:none">
+        ⭐ Trở thành VIP
+      </button>
+
+      <button id="exportPDF"
+        class="w-full bg-purple-600 text-white  px-4 py-3 rounded-lg" style="display:none">
+        📄 Xuất PDF
+      </button>
+
+      <!-- Proxy bấm hộ nút thật #updateProgressBtn -->
+      
+
+      <!-- BLOG (trang mới, đổi link theo ý bạn) -->
+      <a id="blogLink" href="blog.html"
+         class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-slate-800 text-white hover:opacity-90">
+        📝 Blog
+      </a>
+        <button id="menuUpdateProgressProxy"
+        class="w-full bg-orange-600 text-white px-4 py-3 rounded-lg" style="display:none">
+        👌 Cập nhật tiến độ
+      </button>
+
+      <!-- Icon Facebook hỗ trợ -->
+      <div id="vipSupport">
+        <a id="iconFacebook"
+           href="https://m.me/ch/AbZl7rUm_SHyWN1D/?send_source=cm:copy_invite_link"
+           target="_blank" rel="noopener"
+           title="Nhóm FB/Messenger" aria-label="Nhóm FB/Messenger"
+           class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white shadow">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+               alt="Facebook" style="width:22px">
+          <span>Hỗ trợ &amp; Giải đáp</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<div id="loginStatus" style="color:red; margin-top:10px;"></div>
+
+  <!-- Nội dung chính -->
+  <div id="main-content" class="py-10 min-h-screen">
+    
+  <!-- LANDING: xếp dọc gọn giữa màn hình -->
+  <section id="formSection" class="px-4">
+  <div class="max-w-3xl mx-auto bg-glass p-8">
+    <h1 class="text-3xl font-bold text-center mb-4 text-blue-700">TDEE, Meal & Workout </h1>
+
+    <!-- ====== FORM GIỮ NGUYÊN ====== -->
+    <form id="tdeeForm" class="space-y-3 mb-4">
+      <div class="flex flex-col md:flex-row gap-3">
+        <div class="flex-1">
+          <label>Giới tính:</label>
+          <select id="gender" class="w-full rounded p-2 border"><option value="male">Nam</option><option value="female">Nữ</option></select>
+        </div>
+        <div class="flex-1">
+          <label>Tuổi:</label>
+          <input type="number" id="age" class="w-full rounded p-2 border" required>
+        </div>
+        <div class="flex-1">
+          <label>Chiều cao (cm):</label>
+          <input type="number" id="height" class="w-full rounded p-2 border" required>
+        </div>
+        <div class="flex-1">
+          <label>Cân nặng (kg):</label>
+          <input type="number" id="weight" class="w-full rounded p-2 border" required>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-3">
+        <div class="flex-1">
+          <label>% mỡ cơ thể (nếu biết):</label>
+          <input type="number" id="bodyFat" class="w-full rounded p-2 border" placeholder="Không bắt buộc">
+        </div>
+        <div class="flex-1">
+          <label>Số buổi tập kháng lực/tuần:</label>
+          <select id="workoutDays" class="w-full rounded p-2 border">
+            <option value="1">1 buổi</option><option value="2">2 buổi</option><option value="3">3 buổi</option>
+            <option value="4">4 buổi</option><option value="5">5 buổi</option><option value="6">6 buổi</option>
+            <option value="7">7 buổi</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label>Mục tiêu:</label>
+          <select id="goal" class="w-full rounded p-2 border">
+            <option value="maintain">Giữ cân</option><option value="lose">Giảm cân</option><option value="gain">Tăng cân</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label>Mục tiêu phụ:</label>
+          <select id="subGoal" class="w-full rounded p-2 border">
+            <option value="hypertrophy">Tăng cơ</option><option value="strength">Sức mạnh</option><option value="fatloss">Giảm mỡ</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex gap-2 mt-4">
+        <button id="btnTDEE" type="button" class="flex-1 py-3 bg-blue-700 text-white font-bold rounded hover:bg-blue-900">
+          Tính TDEE & Macro
+        </button>
+        <button id="btnPlan" type="button" class="flex-1 py-3 bg-green-700 text-white font-bold rounded hover:bg-green-900" style="display:none">
+          Lập giáo án
+        </button>
+      </div>
+
+      <div id="result-container"></div>
+    </form>
+
+    <div id="tdeeResult"></div>
+  </div>
+</section>
+
+<!-- GIỚI THIỆU: tách riêng để có thể ẩn khi vào planner -->
+<section id="introSection" class="px-4">
+  <div class="max-w-3xl mx-auto space-y-6">
+    <header class="text-center">
+      <h2 class="text-3xl font-bold text-gray-800">Giới thiệu</h2>
+      <p class="text-gray-700 mt-2">
+  <strong>TDEE, Meal &amp; Workout</strong> giúp bạn tính TDEE, chia macro chính xác, gợi ý thực đơn và xây dựng giáo án theo mục tiêu. <strong>Phù hợp cho người mới chưa có kinh nghiệm Hoặc AE PT soạn giáo án nhanh cho khách hàng</strong>
+  <span class="block mt-1">
+    <strong>Gói VIP</strong> hỗ trợ xuất PDF, mở toàn bộ lịch tuần và có nhóm kiểm tra Meal &amp; Form tập.
+    <strong>Tất cả có trong một tiện ích.</strong> Hãy đánh dấu “Hoàn thành” mỗi ngày để nhận lịch hôm sau.
+  </span>
+</p>
+    </header>
+
+    <div id="featuresRow" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <article class="card-lite p-4">
+        <h3 class="font-semibold">🎯 TDEE & Macro</h3>
+        <p class="text-sm text-gray-600 mt-1">Dựa trên thông tin đã được cung cấp tính toán chính xác và đưa ra các con số cụ thế. </p>
+      </article>
+      <article class="card-lite p-4">
+        <h3 class="font-semibold">🍽️ Kế hoạch bữa</h3>
+        <p class="text-sm text-gray-600 mt-1">Chọn 3–5 bữa/ngày, gợi ý món theo Macro, tránh lặp lại món ăn trong ngày, </p>
+      </article>
+      <article class="card-lite p-4">
+        <h3 class="font-semibold">🏋️ Giáo án tuần</h3>
+        <p class="text-sm text-gray-600 mt-1">Phân bổ nhóm cơ/tuần theo mục tiêu phụ (tăng cơ, sức mạnh, giảm mỡ).</p>
+      </article>
+      <article class="card-lite p-4">
+        <h3 class="font-semibold">📄 Xuất PDF (VIP)</h3>
+        <p class="text-sm text-gray-600 mt-1">Xuất Meal & Workout cả tuần đồng bộ số bữa & món đang chọn.</p>
+      </article>
+    </div>
+
+    <details id="howBox" class="card-lite p-4">
+      <summary class="cursor-pointer font-semibold select-none">Cách hoạt động</summary>
+      <ol class="list-decimal pl-6 mt-3 space-y-1 text-gray-700 text-sm">
+        <li>Nhập thông tin → bấm <b>Tính TDEE & Macro</b>.</li>
+        <li>Bấm <b>Lập giáo án</b> để tạo tuần.</li>
+        <li>Chọn số bữa/ngày, tuỳ món nếu muốn.</li>
+        <li>(VIP) <b>Xuất PDF</b> để tải full tuần.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+  <!-- KHU GIÁO ÁN (ẩn khi ở landing) -->
+  <div id="mainApp" class="hidden px-4">
+    <div id="meal-plan-container"></div>
+    <div id="planContent" class="mt-4"></div>
+  </div>
+
+  <!-- Popup & control: giữ nguyên của bạn -->
+  <div id="vipPopup" class="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center" style="display:none">
+    <div class="bg-white rounded-2xl p-8 w-full max-w-md fade">
+      <div class="text-center font-bold text-2xl mb-4 text-yellow-700">Trở thành hội viên TDEE Meal Workout </div>
+      <div id="vipUserEmail" class="text-center mb-3 text-gray-700 font-medium" style="font-size:17px;"></div>
+      <ul class="list-disc ml-6 text-left mb-4">
+        <li>Xem toàn bộ giáo án tuần ngay lập tức</li>
+        <li>Nhận Meal & Workout Full tuần khi xuất PDF</li>
+        <li>Tạo giáo án mới cho người thân 5lượt/ngày</li>
+        <li>Có nhóm hỗ trợ check Meal &  Workout</li>
+      </ul>
+      <div class="mb-4">
+        <b>Hội Viên VIP:</b><br>
+        <button class="bg-blue-700 text-white px-6 py-2 mt-2 rounded mr-2"
+        onclick="becomeVIP(1000000)">
+  1.000.000đ / Tháng
+</button>
+
+      </div>
+      <button onclick="closeVipPopup()" class="px-4 py-2 bg-gray-200 rounded font-bold">Đóng</button>
+    </div>
+  </div>
+
+  <div id="loginPopup" style="display:none"></div>
+
+  <div class="ads" id="adsBox" style="display:none"></div>
+
+  <div id="mealCountWrapper" class="flex justify-end mb-2 px-4" style="display:none">
+    <button id="updateProgressBtn" style="display:none" class="bg-orange-600 text-white px-4 py-2 rounded my-2">👌Cập nhật tiến độ</button>
+    <label for="mealCountSelect" class="mr-2 font-semibold text-gray-600">Số bữa/ngày:</label>
+    <select id="mealCountSelect" class="rounded p-2 border w-28" onchange="window.updateMealCount()">
+      <option value="3">3 bữa/ngày</option><option value="4">4 bữa/ngày</option><option value="5">5 bữa/ngày</option>
+    </select>
+  </div>
+</div>
+
+
+
+<script type="module" src="../TDEEJS/app.js"></script>
+
+
+
+
+
+</body>
+</html>

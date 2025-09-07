@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trở thành VIP</title>
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 24px auto; padding: 0 16px; }
+    .card { border: 1px solid #eee; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .code { font-weight: 700; font-size: 20px; letter-spacing: 1px; }
+    button { padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; }
+    select, input { padding: 8px 10px; border-radius: 8px; border: 1px solid #ddd; }
+    img { max-width: 100%; height: auto; }
+    .muted { color: #666; font-size: 14px; }
+    .ok { color: #0a7; font-weight: 600; }
+    .warn { color: #c60; }
+  </style>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <h1>Trở thành VIP</h1>
+
+  <p style="margin:12px 0 16px; display:flex; gap:8px; align-items:center;">
+    <a href="./index.html"
+       class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-white shadow"
+       style="text-decoration:none">⏪ Về trang chính</a>
+       </p>
+    <!-- nút login – script sẽ tự ẩn nếu đã có phiên -->
+    <p>
+    <button id="btnLoginGoogle" type="button" style="display:none">🔑 Đăng nhập Google</button>
+  </p>
+
+  <p class="muted">Quét QR và chuyển khoản với nội dung <b>VIP &lt;MÃ&gt;</b>. Hệ thống sẽ tự cộng ngày VIP.</p>
+
+  <div class="card">
+    <div class="row">
+      <div>Mã của bạn:</div>
+      <div id="vip-code" class="code">......</div>
+      <button id="btn-copy" type="button">Copy nội dung CK</button>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <label for="plan">Gói:</label>
+      <select id="plan" disabled>
+        <option value="1000000">30 ngày — 1,000,000đ</option>
+      </select>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div class="muted">Nội dung CK sẽ là:</div>
+      <div id="ck-preview" class="ok">VIP ......</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Quét QR để chuyển khoản</h3>
+    <img id="qr" alt="VietQR" />
+    <div class="muted" style="margin-top:8px;">Tài khoản nhận: ACB – 21743241</div>
+  </div>
+
+  <div class="card">
+    <h3>Tình trạng</h3>
+    <div id="status" class="muted">Đang khôi phục phiên…</div>
+  </div>
+
+<script>
+/* ===== Firebase ===== */
+const firebaseConfig = {
+  apiKey: "AIzaSyAwWrLqVa9rKzL-k9vNdLa3HxPMPG31nYY",
+  authDomain: "tdee-meal-workuot.firebaseapp.com",
+  projectId: "tdee-meal-workuot",
+  storageBucket: "tdee-meal-workuot.firebasestorage.app",
+  messagingSenderId: "735783479491",
+  appId: "1:735783479491:web:68c8cbbe09fb55db9a76",
+  measurementId: "G-GVZNKCHYHS"
+};
+firebase.initializeApp(firebaseConfig);
+// đảm bảo session lưu local giữa các trang cùng origin
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+const auth = firebase.auth();
+const db   = firebase.firestore();
+
+/* ===== UI refs & constants ===== */
+const qs            = new URLSearchParams(location.search);
+const DEFAULT_AMOUNT= Number(qs.get('plan')) || 1000000;   // giá gốc
+const PAY_AMOUNT    = Number(qs.get('pay'))  || DEFAULT_AMOUNT; // tiền thực trả
+const PLAN_DAYS     = Number(qs.get('days')) || 30;
+const SALE_MODE     = qs.get('sale') === '1';
+const SALE_PERCENT  = Number(qs.get('percent') || 0);
+const BANK = { bank: "ACB", account: "21743241" };
+
+// Cho phép cả 1.000.000 và 500.000 cùng ra 30 ngày (an toàn khi thiếu param)
+
+const PRICING = { 1000000: 30, 500000: 30 }; // cả 2 giá đều 30 ngày
+
+
+
+const $plan   = document.getElementById('plan');
+const $code   = document.getElementById('vip-code');
+const $ck     = document.getElementById('ck-preview');
+const $qr     = document.getElementById('qr');
+const $copy   = document.getElementById('btn-copy');
+const $status = document.getElementById('status');
+
+// NÚT LOGIN – thêm 1 nút đơn giản ở đầu trang (nếu bạn đã có thì giữ nguyên id)
+let $loginBtn = document.getElementById('btnLoginGoogle');
+if (!$loginBtn) {
+  $loginBtn = document.createElement('button');
+  $loginBtn.id = 'btnLoginGoogle';
+  $loginBtn.textContent = '🔑 Đăng nhập Google';
+  $loginBtn.style.margin = '8px 0';
+  document.body.insertBefore($loginBtn, document.body.firstChild.nextSibling);
+}
+
+/* ===== Helpers ===== */
+function vnd(n){ return (Number(n)||0).toLocaleString('vi-VN') + 'đ'; }
+function vietqrUrl(amount, code){
+  const addInfo = encodeURIComponent(`VIP ${code}`);
+  return `https://img.vietqr.io/image/${BANK.bank}-${BANK.account}-qr_only.png?amount=${amount}&addInfo=${addInfo}`;
+}
+function makeCode(n=6){
+  const s="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let r="";
+  for (let i=0;i<n;i++) r+=s[Math.floor(Math.random()*s.length)];
+  return r;
+}
+
+async function getOrCreateCode(user){
+  // tìm mã pending của user
+  const q = await db.collection('redeemCodes')
+    .where('ownerUid','==', user.uid).where('status','==','pending').limit(1).get();
+
+  if (!q.empty){
+    const r = q.docs[0];
+    await r.ref.set({
+      days: PLAN_DAYS,
+      expectedAmount: PAY_AMOUNT,
+      listPrice: DEFAULT_AMOUNT,
+      salePercent: SALE_MODE ? SALE_PERCENT : 0
+    }, { merge:true });
+    return { id:r.id, ...r.data() };
+  }
+  // tạo mới
+  const id = Math.random().toString(36).slice(2,8).toUpperCase();
+  const data = {
+    ownerUid: user.uid,
+    email: (user.email||'').toLowerCase(),
+    status: 'pending',
+    days: PLAN_DAYS,
+    expectedAmount: PAY_AMOUNT,
+    listPrice: DEFAULT_AMOUNT,
+    salePercent: SALE_MODE ? SALE_PERCENT : 0,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  };
+  await db.collection('redeemCodes').doc(id).set(data);
+  return { id, ...data };
+}
+
+async function updateDays(code, amount){
+  return db.collection('redeemCodes').doc(code).update({
+    days: PLAN_DAYS,
+    expectedAmount: PAY_AMOUNT,
+    listPrice: DEFAULT_AMOUNT,
+    salePercent: SALE_MODE ? SALE_PERCENT : 0
+  });
+}
+
+function render(amount, code){
+  try { $plan.value = String(amount); $plan.disabled = true; } catch {}
+  $code.textContent = code;
+  $ck.textContent   = `VIP ${code}`;
+  $qr.src = vietqrUrl(PAY_AMOUNT, code); // ⬅ tiền SALE/QR
+
+  // Hàng "Thanh toán: …"
+  const card = document.querySelector('.card');
+  if (card && !card.querySelector('.saleRow')) {
+    const row = document.createElement('div');
+    row.className = 'row saleRow'; row.style.marginTop='8px';
+    row.innerHTML = (PAY_AMOUNT < DEFAULT_AMOUNT)
+      ? `<div class="muted">Thanh toán:</div>
+         <div><s>${vnd(DEFAULT_AMOUNT)}</s> → <b class="ok">${vnd(PAY_AMOUNT)}</b>
+         ${SALE_MODE?`<span class="warn"> (-${SALE_PERCENT}%)</span>`:''}</div>`
+      : `<div class="muted">Thanh toán:</div><div><b>${vnd(PAY_AMOUNT)}</b></div>`;
+    card.appendChild(row);
+  }
+}
+
+
+function bindUiWithCode(user, code){
+  render(DEFAULT_AMOUNT, code);
+  $copy.onclick = async () => {
+    const text = `VIP ${code}`;
+    try { await navigator.clipboard.writeText(text);
+      $status.innerHTML = `Đã copy: <b>${text}</b>`;
+    } catch { $status.innerHTML = `Không copy được, bạn tự gõ: <b>${text}</b>`; }
+  };
+  $status.innerHTML = `Đã sẵn sàng cho email: <b>${(user.email||'').toLowerCase()}</b>. Hãy quét QR để nâng VIP.`;
+}
+function watchRedeem(codeId){
+  return db.collection('redeemCodes').doc(codeId).onSnapshot(snap=>{
+    if (!snap.exists) return;
+    const d = snap.data()||{};
+    if (d.status==='paid' || d.status==='used'){
+      $status.innerHTML = '✅ Đã nhận thanh toán. Bạn có thể đóng trang và mở lại ứng dụng để dùng VIP.';
+    }
+  });
+}
+
+/* ===== Login flow & init ===== */
+const provider = new firebase.auth.GoogleAuthProvider();
+btnLoginGoogle.addEventListener('click', async () => {
+  try { await auth.signInWithPopup(provider); } 
+  catch { await auth.signInWithRedirect(provider); }
+});
+
+let unwatch = null;
+auth.getRedirectResult().catch(console.error).finally(()=>{
+  auth.onAuthStateChanged(async (user)=>{
+    if (!user){
+      btnLoginGoogle.style.display='';
+      $status.textContent = 'Không thể khôi phục mã. Vui lòng đăng nhập.';
+      $qr.removeAttribute('src'); $code.textContent='......'; $ck.textContent='VIP ......';
+      return;
+    }
+    btnLoginGoogle.style.display='none';
+    try{
+      const doc = await getOrCreateCode(user);
+      bindUiWithCode(user, doc.id);
+      if (unwatch) unwatch(); unwatch = watchRedeem(doc.id);
+    }catch(e){
+      console.error(e);
+      $status.textContent = 'Lỗi khi khởi tạo mã. Vui lòng tải lại trang.';
+    }
+  });
+});
+</script>
+
+</body>
+</html>

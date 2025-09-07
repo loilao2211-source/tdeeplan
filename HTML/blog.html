@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — TDEE, Meal & Workout Planner</title>
+  <link rel="stylesheet" href="../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <!-- Topbar -->
+  <header id="topbar" class="topbar">
+    <button id="hamburgerBtn" aria-controls="menuDrawer" aria-expanded="false"
+      class="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-white shadow hover:shadow-md">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="sr-only">Mở menu</span>
+    </button>
+    <div class="font-semibold text-gray-700 ml-2">Tiện Ích</div>
+    <div class="flex-1"></div>
+  </header>
+
+  <!-- Drawer -->
+  <div id="menuDrawer" class="drawer">
+    <div class="drawer-backdrop"></div>
+    <aside class="drawer-panel">
+      <header class="px-4 py-3 font-bold text-lg">Menu</header>
+      <div id="menuBody" class="p-3 space-y-3">
+        
+        <!-- giữ nguyên các block bạn đang dùng -->
+        <a id="blogLink" href="blog.html" aria-current="page"
+           class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-slate-800 text-white">
+          📝 Blog
+        </a>
+        <a href="./index.html" class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-white shadow">
+          ⏪ Về trang chính
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Nội dung Blog -->
+  <main id="main-content" class="py-10">
+    <section class="px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-glass p-8">
+          <h1 class="text-3xl font-bold text-center mb-6 text-blue-700">Blog chia sẻ thông tin cho mọi người</h1>
+
+          <!-- Lưới bài viết -->
+          <div class="grid md:grid-cols-2 gap-4">
+            <!-- Card bài viết -->
+            <article class="card-lite p-4">
+              <h2 class="text-xl font-semibold">
+                <a href="./gym/gym.html" class="hover:underline">Lợi ích của việc tập GYM</a></h2>
+              <p class="text-sm text-gray-500 mt-1">26/08/2025 </p>
+              <p class="mt-3 text-gray-700">Đưa các thông tin hữu ích ngắn gọn dễ hiểu về lợi ích của việc tập Gym</p>
+            </article>
+
+            <article class="card-lite p-4">
+              <h2 class="text-xl font-semibold">
+                <a href="./gym/gym1.html" class="hover:underline">Nên ăn gì sau khi tập luyện?</a></h2>
+              <p class="text-sm text-gray-500 mt-1">26/08/2025 </p>
+              <p class="mt-3 text-gray-700">Thiết lập lề, font, và cách đồng bộ số bữa/ngày khi xuất PDF.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- JS nhỏ chỉ để mở/đóng drawer -->
+  <script>
+    const drawer = document.getElementById('menuDrawer');
+    const btn = document.getElementById('hamburgerBtn');
+    const backdrop = drawer.querySelector('.drawer-backdrop');
+
+    btn.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    backdrop.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  </script>
+
+</body>
+</html>
