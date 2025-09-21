@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardio và Weight Training – nên ưu tiên cái nào? | TDEE Planner</title>
+  <meta name="description" content="So sánh cardio và weight training: mục tiêu, lợi ích, nhược điểm và cách kết hợp tối ưu. Chọn đúng phương pháp để giảm mỡ, tăng cơ hoặc rèn sức khỏe.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/cardio-vs-weight-training.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Cardio và Weight Training – nên ưu tiên cái nào?">
+<meta property="og:description" content=" Cardio và Weight Training là gì?, Lợi ích của cardio, Lợi ích của weight training, So sánh cardio và weight training, cardio, Liss cardio.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/cardio-vs-weight-training.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/cardio/cardio-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Cardio và Weight Training – nên ưu tiên cái nào?",
+  "description": "Cardio và Weight Training là gì?, Lợi ích của cardio, Lợi ích của weight training, So sánh cardio và weight training, cardio, Liss cardio.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/cardio/cardio-1.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/cardio-vs-weight-training.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Cardio và Weight Training – nên ưu tiên cái nào?", "item": "https://tdeeplan.com/HTML/gym/cardio-vs-weight-training.html" }
+  ]
+}
+</script>
+
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Cardio và Weight Training – nên ưu tiên cái nào?</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/cardio/cardio-1.jpg" alt="Cardio vs tập tạ" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Cardio giúp tăng sức bền và đốt mỡ, trong khi weight training (tập tạ) giúp tăng cơ và cải thiện vóc dáng. Nên chọn cái nào để đạt mục tiêu nhanh nhất?
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#dinh-nghia">1. Cardio và Weight Training là gì?</a></li>
+        <li><a href="#loi-ich-cardio">2. Lợi ích của cardio</a></li>
+        <li><a href="#loi-ich-weight">3. Lợi ích của weight training</a></li>
+        <li><a href="#so-sanh">4. So sánh cardio và weight training</a></li>
+        <li><a href="#ket-hop">5. Kết hợp cả hai để tối ưu</a></li>
+        <li><a href="#tong-ket">6. Tổng kết</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="dinh-nghia">1) Cardio và Weight Training là gì?</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/cardio/cardio-2.jpg" alt="Chạy bộ cardio ngoài trời" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Cardio: vận động tim mạch tăng nhịp tim, đốt calo</figcaption>
+    </figure>
+    <p><strong>Cardio</strong> (Cardiovascular exercise) là các bài tập tim mạch như chạy bộ, đạp xe, bơi lội, nhảy dây. Đặc trưng: duy trì nhịp tim cao trong thời gian dài.</p>
+    <p><strong>Weight Training</strong> là các bài tập kháng lực với tạ (dumbbell, barbell, máy). Mục tiêu: phát triển cơ bắp, tăng sức mạnh, cải thiện hình thể.</p>
+
+    <h2 id="loi-ich-cardio">2) Lợi ích của cardio</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/cardio/cardio-3.jpg" alt="2) Lợi ích của cardio" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Tăng sức bền tim mạch và phổi</li>
+      <li>Đốt calo hiệu quả, hỗ trợ giảm mỡ</li>
+      <li>Cải thiện sức khỏe tim mạch, giảm nguy cơ bệnh tim</li>
+      <li>Giảm stress, cải thiện tâm trạng nhờ endorphin</li>
+    </ul>
+
+    <h2 id="loi-ich-weight">3) Lợi ích của weight training</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/cardio/cardio-7.jpg" alt="Weight training trong phòng gym" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Weight training: tăng cơ, săn chắc vóc dáng</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Tăng khối cơ, tạo vóc dáng săn chắc</li>
+      <li>Tăng tỷ lệ trao đổi chất cơ bản (BMR) → đốt calo ngay cả khi nghỉ</li>
+      <li>Tăng sức mạnh xương, giảm nguy cơ loãng xương</li>
+      <li>Cải thiện tư thế, sự tự tin</li>
+    </ul>
+
+    <h2 id="so-sanh">4) So sánh cardio và weight training</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/cardio/cardio-6.jpg" alt="4) So sánh cardio và weight training" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <table class="table-auto border-collapse border border-gray-300 text-sm my-6">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border px-3 py-2">Tiêu chí</th>
+          <th class="border px-3 py-2">Cardio</th>
+          <th class="border px-3 py-2">Weight Training</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border px-3 py-2">Mục tiêu</td>
+          <td class="border px-3 py-2">Sức bền, đốt mỡ</td>
+          <td class="border px-3 py-2">Tăng cơ, hình thể</td>
+        </tr>
+        <tr>
+          <td class="border px-3 py-2">Calorie burn</td>
+          <td class="border px-3 py-2">Đốt nhiều calo trong khi tập</td>
+          <td class="border px-3 py-2">Tăng đốt calo cả khi nghỉ</td>
+        </tr>
+        <tr>
+          <td class="border px-3 py-2">Thời gian tập</td>
+          <td class="border px-3 py-2">30–60 phút</td>
+          <td class="border px-3 py-2">45–75 phút</td>
+        </tr>
+        <tr>
+          <td class="border px-3 py-2">Ảnh hưởng lâu dài</td>
+          <td class="border px-3 py-2">Tốt cho tim mạch</td>
+          <td class="border px-3 py-2">Cải thiện vóc dáng, sức mạnh</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="ket-hop">5) Kết hợp cả hai để tối ưu</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/cardio/cardio-10.jpg" alt="Cân bằng giữa cardio và weight training" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Sự kết hợp giúp vừa khỏe vừa đẹp</figcaption>
+    </figure>
+    <p><strong>Giảm mỡ:</strong> ưu tiên cardio + weight training vừa phải.</p>
+    <p><strong>Tăng cơ:</strong> ưu tiên weight training, kết hợp cardio nhẹ để hỗ trợ tim mạch.</p>
+    <p><strong>Sức khỏe tổng thể:</strong> kết hợp 3–4 buổi weight + 2–3 buổi cardio mỗi tuần.</p>
+
+    <h2 id="tong-ket">6) Tổng kết</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/cardio/cardio-9.jpg" alt="6) Tổng kết" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Cardio và weight training không đối lập mà bổ trợ cho nhau. Hãy chọn phương pháp chính dựa trên mục tiêu: <strong>giảm mỡ → cardio nhiều hơn, tăng cơ → weight training nhiều hơn</strong>. Nhưng để khỏe mạnh toàn diện, hãy kết hợp cả hai.</p>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./crossfit-vs-gym.html">CrossFit và Gym truyền thống khác nhau thế nào?</a></li>
+        <li><a href="./dinh-duong-giam-mo.html">Dinh dưỡng khi giảm mỡ</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để cân bằng giữa cardio và weight training, theo mục tiêu cá nhân của bạn.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

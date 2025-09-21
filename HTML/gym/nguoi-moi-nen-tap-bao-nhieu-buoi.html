@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Người mới tập nên tập bao nhiêu buổi/tuần? | TDEE Planner</title>
+  <meta name="description" content="Giải đáp thắc mắc: Người mới nên tập gym bao nhiêu buổi/tuần? Lịch tập 2, 3, 4 buổi khác nhau thế nào. Gợi ý lịch tập mẫu và nguyên tắc nghỉ ngơi.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/nguoi-moi-nen-tap-bao-nhieu-buoi.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Open Graph & Twitter -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Người Mới tập nên tập bao nhiêu Buổi/Tuần?">
+<meta property="og:description" content="Các yếu tố quyết định số buổi tập, Lịch tập 2 buổi/tuần, Lịch tập 3 buổi/tuần, Lịch tập 4 buổi/tuần, Nguyên tắc nghỉ ngơi cho người mới.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/nguoi-moi-nen-tap-bao-nhieu-buoi.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/equipment/equipment-4.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Người Mới tập nên tập bao nhiêu Buổi/Tuần?",
+  "description": "Các yếu tố quyết định số buổi tập, Lịch tập 2 buổi/tuần, Lịch tập 3 buổi/tuần, Lịch tập 4 buổi/tuần, Nguyên tắc nghỉ ngơi cho người mới.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/equipment/equipment-4.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/nguoi-moi-nen-tap-bao-nhieu-buoi.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Người Mới tập nên tập bao nhiêu Buổi/Tuần?", "item": "https://tdeeplan.com/HTML/gym/nguoi-moi-nen-tap-bao-nhieu-buoi.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Người Mới tập nên tập bao nhiêu Buổi/Tuần?</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/equipment/equipment-4.jpg" alt="Người mới nên tập bao nhiêu buổi/tuần" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Người mới tập gym thường băn khoăn: nên tập 2, 3 hay 5 buổi/tuần? Bài viết này giúp bạn chọn lịch tập hợp lý để tiến bộ nhanh mà không quá tải.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#yeu-to">1. Các yếu tố quyết định số buổi tập</a></li>
+        <li><a href="#2-buoi">2. Lịch tập 2 buổi/tuần</a></li>
+        <li><a href="#3-buoi">3. Lịch tập 3 buổi/tuần</a></li>
+        <li><a href="#4-buoi">4. Lịch tập 4 buổi/tuần</a></li>
+        <li><a href="#nguyen-tac">5. Nguyên tắc nghỉ ngơi cho người mới</a></li>
+        <li><a href="#tong-ket">6. Tổng kết</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="yeu-to">1) Các yếu tố quyết định số buổi tập</h2>
+    <figure class="my-6">
+      <img src="/HTML/assets/generic/generic-10.jpg" alt="Người mới tập gym cần huấn luyện viên hướng dẫn" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Người mới tập cần lắng nghe cơ thể và chọn số buổi phù hợp</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Mục tiêu:</strong> giảm mỡ, tăng cơ, hay chỉ rèn sức khỏe</li>
+      <li><strong>Thời gian rảnh:</strong> thực tế bạn có thể duy trì bao nhiêu ngày/tuần</li>
+      <li><strong>Khả năng phục hồi:</strong> người mới cần nhiều thời gian nghỉ hơn</li>
+      <li><strong>Độ quen với vận động:</strong> nếu ít vận động trước đó, nên bắt đầu nhẹ</li>
+    </ul>
+
+    <h2 id="2-buoi">2) Lịch tập 2 buổi/tuần</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/schedule/schedule-1.jpg" alt="2) Lịch tập 2 buổi/tuần" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Phù hợp cho người cực bận hoặc mới bắt đầu, giúp cơ thể làm quen dần.</p>
+    <ul class="list-disc pl-5">
+      <li><strong>Buổi 1:</strong> Toàn thân (full body) – squat, push-up, row</li>
+      <li><strong>Buổi 2:</strong> Toàn thân khác biến thể – deadlift, bench press nhẹ, lunge</li>
+    </ul>
+
+    <h2 id="3-buoi">3) Lịch tập 3 buổi/tuần</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/schedule/schedule-15.jpg" alt="Lịch tập gym 3 buổi/tuần cho người mới" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Lịch 3 buổi/tuần là lựa chọn phổ biến cho người mới</figcaption>
+    </figure>
+    <p>Lịch 3 buổi (ví dụ: Thứ 2 – Thứ 4 – Thứ 6) được nhiều người chọn vì vừa đủ để tiến bộ vừa có thời gian nghỉ.</p>
+    <ul class="list-disc pl-5">
+      <li><strong>Buổi 1:</strong> Push (ngực, vai, tay sau)</li>
+      <li><strong>Buổi 2:</strong> Pull (lưng, tay trước)</li>
+      <li><strong>Buổi 3:</strong> Legs (chân, mông, core)</li>
+    </ul>
+
+    <h2 id="4-buoi">4) Lịch tập 4 buổi/tuần</h2>
+
+
+    <p>Phù hợp cho người mới có nhiều thời gian hơn, muốn tiến bộ nhanh.</p>
+    <ul class="list-disc pl-5">
+      <li><strong>Buổi 1:</strong> Upper (thân trên)</li>
+      <li><strong>Buổi 2:</strong> Lower (thân dưới)</li>
+      <li><strong>Buổi 3:</strong> Upper</li>
+      <li><strong>Buổi 4:</strong> Lower</li>
+    </ul>
+    <p>So với 3 buổi, lịch 4 buổi giúp mỗi nhóm cơ được tập nhiều hơn nhưng vẫn có đủ ngày nghỉ.</p>
+
+    <h2 id="nguyen-tac">5) Nguyên tắc nghỉ ngơi cho người mới</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/recovery/recovery-10.jpg" alt="Ngày nghỉ ngơi phục hồi cơ bắp" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Ngày nghỉ quan trọng ngang với ngày tập</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Không tập liên tục 5–6 ngày ngay từ đầu</li>
+      <li>Đảm bảo ngủ 7–9 tiếng/đêm</li>
+      <li>Ăn đủ protein để phục hồi</li>
+      <li>Lắng nghe cơ thể: DOMS nặng thì nghỉ thêm</li>
+    </ul>
+
+    <h2 id="tong-ket">6) Tổng kết</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/equipment/equipment-8.jpg" alt="6) Tổng kết" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Người mới tập gym có thể bắt đầu từ <strong>2–3 buổi/tuần</strong>, sau đó tăng dần lên 4 buổi khi cơ thể đã quen. Quan trọng là duy trì đều đặn, nghỉ ngơi hợp lý và ăn uống đủ chất để đạt kết quả lâu dài.</p>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./tap-gym-khi-bi-doms.html">Có nên tập gym khi bị DOMS?</a></li>
+        <li><a href="./lich-tap-3-4-5-buoi.html">Lịch tập 3–4–5 buổi/tuần</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để tạo lịch tập cá nhân hoá cho người mới bắt đầu.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

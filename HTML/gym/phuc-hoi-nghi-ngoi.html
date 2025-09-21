@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nghỉ ngơi &amp; phục hồi: yếu tố quyết định trong tập luyện | TDEE Planner</title>
+  <meta name="description" content="Tìm hiểu vai trò của nghỉ ngơi, giấc ngủ, deload và phục hồi chủ động trong xây dựng cơ bắp. Có mẹo thực hành đơn giản cho người mới.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/phuc-hoi-nghi-ngoi.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Nghỉ Ngơi & Phục Hồi: là yếu tố quyết định trong Tập Luyện">
+<meta property="og:description" content="Vai trò của nghỉ ngơi, Nguyên lý supercompensation, Giấc ngủ, Deload & nghỉ dài hạn, Phục hồi chủ động, Mẹo tối ưu phục hồi.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/phuc-hoi-nghi-ngoi.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/recovery/recovery-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Nghỉ Ngơi & Phục Hồi: là yếu tố quyết định trong Tập Luyện",
+  "description": "Vai trò của nghỉ ngơi, Nguyên lý supercompensation, Giấc ngủ, Deload & nghỉ dài hạn, Phục hồi chủ động, Mẹo tối ưu phục hồi.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/recovery/recovery-1.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/phuc-hoi-nghi-ngoi.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Nghỉ Ngơi & Phục Hồi: là yếu tố quyết định trong Tập Luyện", "item": "https://tdeeplan.com/HTML/gym/phuc-hoi-nghi-ngoi.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  
+<div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Nghỉ Ngơi &amp; Phục Hồi: là yếu tố quyết định trong Tập Luyện</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/recovery/recovery-1.jpg" alt="Ngủ nghỉ và phục hồi sau tập" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Nội dung nhằm mục đích giáo dục. Điều chỉnh thói quen nghỉ ngơi theo nhu cầu và thể trạng của bạn.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#vai-tro">1. Vai trò của nghỉ ngơi</a></li>
+        <li><a href="#nguyen-ly">2. Nguyên lý supercompensation</a></li>
+        <li><a href="#giac-ngu">3. Giấc ngủ</a></li>
+        <li><a href="#deload">4. Deload &amp; nghỉ dài hạn</a></li>
+        <li><a href="#active-recovery">5. Phục hồi chủ động</a></li>
+        <li><a href="#meo">6. Mẹo tối ưu phục hồi</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="vai-tro">1) Vai trò của nghỉ ngơi</h2>
+
+
+    <p>Tập luyện chỉ là một nửa quá trình. Nửa còn lại chính là nghỉ ngơi. Trong lúc ngủ và nghỉ, cơ thể tổng hợp protein, sửa chữa sợi cơ, cân bằng hormone và tái tạo năng lượng. Thiếu nghỉ ngơi, cơ thể dễ rơi vào tình trạng quá tải (overtraining), giảm hiệu suất và dễ chấn thương.</p>
+
+    <h2 id="nguyen-ly">2) Nguyên lý supercompensation</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-1.jpg" alt="2) Nguyên lý supercompensation" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Mỗi buổi tập gây ra sự mệt mỏi và vi chấn thương ở cơ. Trong quá trình phục hồi, cơ thể không chỉ quay lại trạng thái cũ mà còn “siêu bù” (supercompensation), mạnh hơn để chuẩn bị cho lần sau. Nếu bạn tập quá dày đặc mà không nghỉ, cơ thể chưa kịp siêu bù thì hiệu suất sẽ tụt.</p>
+
+    <h2 id="giac-ngu">3) Giấc ngủ</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/recovery/recovery-9.jpg" alt="3) Giấc ngủ" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Giấc ngủ là “liều thuốc phục hồi” rẻ nhất. Người tập gym nên ngủ 7–9 tiếng/đêm. Thiếu ngủ dẫn đến giảm testosterone, tăng cortisol, hạn chế tổng hợp protein và gây cảm giác đói hơn. Ngoài ra, ngủ đủ còn giúp cải thiện tâm trạng và động lực tập luyện.</p>
+
+    <h2 id="deload">4) Deload &amp; nghỉ dài hạn</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/recovery/recovery-2.jpg" alt="4) Deload &amp; nghỉ dài hạn" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Sau 6–8 tuần tập nặng liên tục, bạn nên có 1 tuần deload (giảm 40–50% khối lượng tập) để hệ thần kinh và khớp nghỉ ngơi. Đây không phải lùi bước mà là bước đệm để tiến xa hơn, tránh plateau (dậm chân tại chỗ).</p>
+
+    <h2 id="active-recovery">5) Phục hồi chủ động</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/recovery/recovery-3.jpg" alt="5) Phục hồi chủ động" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Nghỉ ngơi không có nghĩa là nằm yên. Các hoạt động nhẹ nhàng như đi bộ, đạp xe chậm, yoga, stretching, foam rolling sẽ tăng lưu thông máu, đẩy nhanh quá trình phục hồi mà không gây thêm áp lực lên cơ thể.</p>
+
+    <h2 id="meo">6) Mẹo tối ưu phục hồi</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/recovery/recovery-4.jpg" alt="6) Mẹo tối ưu phục hồi" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Giữ lịch ngủ đều đặn, đi ngủ sớm</li>
+      <li>Ăn đủ protein và carb sau buổi tập</li>
+      <li>Bổ sung nước &amp; điện giải, đặc biệt khi tập nặng</li>
+      <li>Massage, tắm nước ấm hoặc ngâm lạnh khi cần</li>
+      <li>Định kỳ 6–8 tuần có 1 tuần deload</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./an-truoc-trong-sau-buoi-tap.html">Ăn gì trước – trong – sau buổi tập</a></li>
+        <li><a href="./macro-cho-nguoi-moi.html">Macro là gì? Cách chia Protein–Carb–Fat</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Theo dõi giấc ngủ và lịch tập bằng app TDEE để tối ưu phục hồi.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

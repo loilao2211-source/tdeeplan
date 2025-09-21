@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Có nên tập gym khi bị đau nhức cơ (DOMS)? | TDEE Planner</title>
+  <meta name="description" content="Giải thích DOMS (Delayed Onset Muscle Soreness) là gì, nguyên nhân và có nên tập gym khi bị đau nhức cơ. Hướng dẫn cách phục hồi nhanh và phòng tránh.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/tap-gym-khi-bi-doms.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Có nên tập Gym khi bị đau nhức Cơ (DOMS)?">
+<meta property="og:description" content="DOMS là gì?, Nguyên nhân gây DOMS, Có nên tập gym khi bị DOMS?, Cách phục hồi DOMS nhanh hơn, Cách phòng tránh DOMS nặng.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/tap-gym-khi-bi-doms.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/strength/strength-11.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Có nên tập Gym khi bị đau nhức Cơ (DOMS)?",
+  "description": "DOMS là gì?, Nguyên nhân gây DOMS, Có nên tập gym khi bị DOMS?, Cách phục hồi DOMS nhanh hơn, Cách phòng tránh DOMS nặng.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/strength/strength-11.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/tap-gym-khi-bi-doms.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Có nên tập Gym khi bị đau nhức Cơ (DOMS)?", "item": "https://tdeeplan.com/HTML/gym/tap-gym-khi-bi-doms.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Có nên tập Gym khi bị đau nhức Cơ (DOMS)?</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/strength/strength-11.jpg" alt="Đau nhức cơ DOMS sau tập" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      DOMS là hiện tượng nhức cơ sau tập. Đây không phải chấn thương, nhưng nếu xử lý sai có thể ảnh hưởng tiến bộ và gây mệt mỏi.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#doms-la-gi">1. DOMS là gì?</a></li>
+        <li><a href="#nguyen-nhan">2. Nguyên nhân gây DOMS</a></li>
+        <li><a href="#tap-khi-doms">3. Có nên tập gym khi bị DOMS?</a></li>
+        <li><a href="#phuc-hoi">4. Cách phục hồi DOMS nhanh hơn</a></li>
+        <li><a href="#phong-tranh">5. Cách phòng tránh DOMS nặng</a></li>
+        <li><a href="#tong-ket">6. Tổng kết</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="doms-la-gi">1) DOMS là gì?</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/generic/generic-15.jpg" alt="Đau nhức cơ sau tập gym (DOMS)" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">DOMS thường xuất hiện sau 12–48h tập nặng</figcaption>
+    </figure>
+    <p><strong>DOMS (Delayed Onset Muscle Soreness)</strong> là hiện tượng đau nhức cơ xuất hiện 12–48 giờ sau tập, đặc biệt khi tập bài mới hoặc tăng độ khó. Cơ cảm giác căng, mỏi, đau khi vận động hoặc chạm vào.</p>
+
+    <h2 id="nguyen-nhan">2) Nguyên nhân gây DOMS</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-1.jpg" alt="2) Nguyên nhân gây DOMS" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Tổn thương vi mô ở sợi cơ:</strong> do tập nặng hoặc nhiều eccentric (hạ tạ chậm)</li>
+      <li><strong>Phản ứng viêm nhẹ:</strong> cơ thể phản ứng để sửa chữa cơ bắp</li>
+      <li><strong>Chưa quen bài tập:</strong> người mới tập hoặc đổi chương trình dễ bị DOMS hơn</li>
+    </ul>
+
+    <h2 id="tap-khi-doms">3) Có nên tập gym khi bị DOMS?</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/recovery/recovery-5.jpg" alt="3) Có nên tập gym khi bị DOMS?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p><strong>Trả lời ngắn gọn:</strong> Có thể tập, nhưng cần chọn mức độ phù hợp. DOMS không phải chấn thương, nhưng tập quá nặng khi cơ chưa hồi phục có thể làm giảm hiệu quả.</p>
+    <ul class="list-disc pl-5">
+      <li>Nếu DOMS nhẹ → vẫn có thể tập, ưu tiên nhóm cơ khác</li>
+      <li>Nếu DOMS vừa → tập nhẹ, cardio, mobility, hoặc giảm tải</li>
+      <li>Nếu DOMS nặng (khó di chuyển, đau nhiều ngày) → nên nghỉ 1–2 ngày</li>
+    </ul>
+
+    <h2 id="phuc-hoi">4) Cách phục hồi DOMS nhanh hơn</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/flexibility/flexibility-1.jpg" alt="Giãn cơ giúp giảm DOMS" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Giãn cơ và vận động nhẹ giúp máu lưu thông</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Vận động nhẹ (đi bộ, đạp xe, yoga)</li>
+      <li>Giãn cơ sau tập</li>
+      <li>Dùng foam roller massage</li>
+      <li>Ngủ đủ 7–9h</li>
+      <li>Bổ sung protein và nước</li>
+    </ul>
+
+
+    <h2 id="phong-tranh">5) Cách phòng tránh DOMS nặng</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/recovery/recovery-8.jpg" alt="5) Cách phòng tránh DOMS nặng" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Khởi động kỹ trước tập</li>
+      <li>Tăng tải từ từ (Progressive Overload)</li>
+      <li>Kết hợp mobility và stretching</li>
+      <li>Không đổi chương trình tập quá đột ngột</li>
+    </ul>
+
+    <h2 id="tong-ket">6) Tổng kết</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/recovery/recovery-18.jpg" alt="6) Tổng kết" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>DOMS là phản ứng bình thường của cơ thể khi tập luyện. Bạn vẫn có thể tập khi bị DOMS nhẹ, nhưng hãy lắng nghe cơ thể và ưu tiên phục hồi. Ăn ngủ đủ, tập đúng kỹ thuật, và tăng tải hợp lý sẽ giúp DOMS dễ chịu hơn.</p>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./progressive-overload.html">Progressive Overload – Nguyên tắc tăng tạ</a></li>
+        <li><a href="./chan-thuong-khi-tap-gym.html">Chấn thương thường gặp khi tập gym</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để theo dõi lịch tập, cân bằng nghỉ ngơi và phục hồi cơ bắp.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

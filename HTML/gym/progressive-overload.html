@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progressive Overload – Nguyên tắc tăng tạ để tiến bộ | TDEE Planner</title>
+  <meta name="description" content="Giải thích nguyên tắc Progressive Overload trong tập gym. Hướng dẫn cách tăng tạ, reps, set, thời gian nghỉ để đạt hiệu quả tối ưu. Có ví dụ thực hành.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/progressive-overload.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Open Graph & Twitter -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Progressive Overload – Nguyên Tắc tăng tạ như thế nào để Tiến Bộ">
+<meta property="og:description" content="Progressive Overload là gì?, Vì sao cần Progressive Overload?, Các cách áp dụng Progressive Overload, Ví dụ thực hành, Lỗi thường gặp, Mẹo áp dụng an toàn.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/progressive-overload.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/strength/strength-2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Progressive Overload – Nguyên Tắc tăng tạ như thế nào để Tiến Bộ",
+  "description": "Progressive Overload là gì?, Vì sao cần Progressive Overload?, Các cách áp dụng Progressive Overload, Ví dụ thực hành, Lỗi thường gặp, Mẹo áp dụng an toàn.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/strength/strength-2.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/progressive-overload.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Progressive Overload – Nguyên Tắc tăng tạ như thế nào để Tiến Bộ", "item": "https://tdeeplan.com/HTML/gym/progressive-overload.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Progressive Overload – Nguyên Tắc tăng tạ như thế nào để Tiến Bộ</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/strength/strength-2.jpg" alt="Tăng tải dần khi tập tạ" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Không có Progressive Overload, cơ bắp sẽ dậm chân tại chỗ. Đây là chìa khóa để tăng cơ và sức mạnh bền vững.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#dinh-nghia">1. Progressive Overload là gì?</a></li>
+        <li><a href="#tai-sao">2. Vì sao cần Progressive Overload?</a></li>
+        <li><a href="#cach-thuc">3. Các cách áp dụng Progressive Overload</a></li>
+        <li><a href="#vi-du">4. Ví dụ thực hành</a></li>
+        <li><a href="#loi">5. Lỗi thường gặp</a></li>
+        <li><a href="#meo">6. Mẹo áp dụng an toàn</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="dinh-nghia">1) Progressive Overload là gì?</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-3.jpg" alt="Tăng tạ dần theo nguyên tắc Progressive Overload" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Progressive Overload: tăng dần độ khó để buộc cơ thể thích nghi</figcaption>
+    </figure>
+    <p><strong>Progressive Overload</strong> là nguyên tắc tăng dần áp lực lên cơ bắp qua thời gian (nặng hơn, nhiều reps hơn, nhiều set hơn, nghỉ ngắn hơn) để cơ thể phải thích nghi và phát triển. Không áp dụng nguyên tắc này, bạn sẽ rơi vào “plateau” – tập mãi không tiến bộ.</p>
+
+    <h2 id="tai-sao">2) Vì sao cần Progressive Overload?</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-5.jpg" alt="2) Vì sao cần Progressive Overload?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Kích thích cơ bắp:</strong> cơ chỉ phát triển khi có áp lực cao hơn mức quen thuộc</li>
+      <li><strong>Ngăn plateau:</strong> thay đổi độ khó → tránh cơ thể thích nghi hoàn toàn</li>
+      <li><strong>Tăng sức mạnh:</strong> hệ thần kinh và cơ phối hợp tốt hơn</li>
+      <li><strong>Tăng tự tin:</strong> thấy rõ tiến bộ từng tuần</li>
+    </ul>
+
+    <h2 id="cach-thuc">3) Các cách áp dụng Progressive Overload</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-12.jpg" alt="Thêm đĩa tạ vào barbell để tăng tải" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Tăng tạ là cách phổ biến nhất để áp dụng Progressive Overload</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Tăng trọng lượng (Load):</strong> thêm 2.5–5% trọng lượng mỗi 1–2 tuần</li>
+      <li><strong>Tăng số reps:</strong> ví dụ từ 8 → 10 reps với cùng mức tạ</li>
+      <li><strong>Tăng số set:</strong> từ 3 → 4 set để tăng tổng volume</li>
+      <li><strong>Giảm thời gian nghỉ:</strong> từ 90s → 60s để tăng áp lực</li>
+      <li><strong>Tăng mật độ tập:</strong> cùng khối lượng nhưng trong ít thời gian hơn</li>
+      <li><strong>Cải thiện form:</strong> kiểm soát nhịp độ, ROM đầy đủ</li>
+    </ul>
+
+    <h2 id="vi-du">4) Ví dụ thực hành</h2>
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-13.jpg" alt="Sổ ghi chép buổi tập để theo dõi tiến bộ" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Ghi log để kiểm soát Progressive Overload</figcaption>
+    </figure>
+    <p><strong>Ví dụ Bench Press:</strong></p>
+    <ul class="list-disc pl-5">
+      <li>Tuần 1: 40kg × 8 reps × 3 set</li>
+      <li>Tuần 2: 40kg × 10 reps × 3 set</li>
+      <li>Tuần 3: 42.5kg × 8 reps × 3 set</li>
+      <li>Tuần 4: 42.5kg × 10 reps × 3 set</li>
+    </ul>
+    <p><strong>Kết quả:</strong> sau 1 tháng bạn đã tăng cả sức mạnh (load) và sức bền (reps).</p>
+
+    <h2 id="loi">5) Lỗi thường gặp</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-1.jpg" alt="5) Lỗi thường gặp" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Tăng tạ quá nhanh:</strong> dễ chấn thương</li>
+      <li><strong>Bỏ qua form:</strong> nâng nặng nhưng sai kỹ thuật</li>
+      <li><strong>Không ghi log:</strong> khó biết mình có tiến bộ hay không</li>
+      <li><strong>Overtraining:</strong> tập quá nhiều, không đủ phục hồi</li>
+    </ul>
+
+    <h2 id="meo">6) Mẹo áp dụng an toàn</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-10.jpg" alt="6) Mẹo áp dụng an toàn" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Tăng tạ từ từ (2.5–5%) thay vì “all in”</li>
+      <li>Ưu tiên form chuẩn trước khi tăng tải</li>
+      <li>Ghi nhật ký tập luyện để theo dõi</li>
+      <li>Kết hợp deload mỗi 6–8 tuần để tránh chấn thương</li>
+      <li>Kết hợp dinh dưỡng &amp; ngủ đủ → cơ thể mới phục hồi và phát triển</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./ky-thuat-hit-tho-form-chuan.html">Kỹ thuật hít thở và form chuẩn</a></li>
+        <li><a href="./ky-thuat-compound.html">Kỹ thuật compound cơ bản</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để theo dõi log tập, tải trọng và tiến bộ mỗi tuần.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

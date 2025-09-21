@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lịch tập 3–4–5 buổi/tuần theo mục tiêu | TDEE Planner</title>
+  <meta name="description" content="Hướng dẫn xây dựng lịch tập gym 3, 4, 5 buổi/tuần cho người mới và trung cấp. Có ví dụ lịch full body, upper/lower, push–pull–legs để tăng cơ, giảm mỡ.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/lich-tap-3-4-5-buoi.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Lịch Tập 3–4–5 Buổi/Tuần Theo Mục Tiêu">
+<meta property="og:description" content="Nguyên tắc xây dựng lịch tập, Lịch tập 3 buổi/tuần (Full Body), Lịch tập 4 buổi/tuần (Upper/Lower Split), Lịch tập 5 buổi/tuần (Push–Pull–Legs), Cách chọn lịch tập phù hợp, Sai lầm thường gặp.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/lich-tap-3-4-5-buoi.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/schedule/schedule-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Lịch Tập 3–4–5 Buổi/Tuần Theo Mục Tiêu",
+  "description": "Nguyên tắc xây dựng lịch tập, Lịch tập 3 buổi/tuần (Full Body), Lịch tập 4 buổi/tuần (Upper/Lower Split), Lịch tập 5 buổi/tuần (Push–Pull–Legs), Cách chọn lịch tập phù hợp, Sai lầm thường gặp.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/schedule/schedule-1.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/lich-tap-3-4-5-buoi.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Lịch Tập 3–4–5 Buổi/Tuần Theo Mục Tiêu", "item": "https://tdeeplan.com/HTML/gym/lich-tap-3-4-5-buoi.html" }
+  ]
+}
+</script>
+
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Lịch Tập 3–4–5 Buổi/Tuần Theo Mục Tiêu</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/schedule/schedule-1.jpg" alt="Lịch tập 3–4–5 buổi/tuần" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Bài viết nhằm mục đích hướng dẫn cơ bản. Hãy điều chỉnh khối lượng và cường độ theo sức khỏe cá nhân, hoặc tham khảo HLV để được tư vấn chi tiết.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#nguyen-tac">1. Nguyên tắc xây dựng lịch tập</a></li>
+        <li><a href="#lich-3">2. Lịch tập 3 buổi/tuần (Full Body)</a></li>
+        <li><a href="#lich-4">3. Lịch tập 4 buổi/tuần (Upper/Lower Split)</a></li>
+        <li><a href="#lich-5">4. Lịch tập 5 buổi/tuần (Push–Pull–Legs)</a></li>
+        <li><a href="#chon">5. Cách chọn lịch tập phù hợp</a></li>
+        <li><a href="#loi">6. Sai lầm thường gặp</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="nguyen-tac">1) Nguyên tắc xây dựng lịch tập</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/schedule/schedule-5.png" alt="1) Nguyên tắc xây dựng lịch tập" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Một lịch tập hiệu quả phải đảm bảo:</p>
+    <ul class="list-disc pl-5">
+      <li>Tần suất tập mỗi nhóm cơ: 2 lần/tuần là tối ưu cho đa số</li>
+      <li>Có ngày nghỉ để phục hồi → cơ bắp mới phát triển</li>
+      <li>Kết hợp cả <em>compound</em> (Squat, Deadlift, Bench) và isolation (Biceps curl, Lateral raise)</li>
+      <li>Tùy mục tiêu (giảm mỡ, tăng cơ, duy trì) mà chọn khối lượng và số buổi hợp lý</li>
+    </ul>
+
+    <h2 id="lich-3">2) Lịch tập 3 buổi/tuần (Full Body)</h2>
+
+    <figure class="my-6">
+      <img src="/HTML/assets/schedule/schedule-15.jpg" alt="Người tập lịch 3 buổi full body" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Full body phù hợp cho người mới, bận rộn</figcaption>
+    </figure>
+    <p>Thường là thứ 2 – thứ 4 – thứ 6 hoặc thứ 3 – thứ 5 – thứ 7. Mỗi buổi tập cả cơ thể, tập trung compound.</p>
+    <ul class="list-disc pl-5">
+      <li><strong>Ngày 1:</strong> Squat, Bench Press, Row, Shoulder Press, Biceps Curl</li>
+      <li><strong>Ngày 2:</strong> Deadlift, Incline Press, Pull-up, Lateral Raise, Triceps Extension</li>
+      <li><strong>Ngày 3:</strong> Front Squat, Dip, Chin-up, Face Pull, Calf Raise</li>
+    </ul>
+    <p><em>Ưu điểm:</em> tiết kiệm thời gian, dễ duy trì, phù hợp người mới. <br> <em>Nhược điểm:</em> có thể mệt nếu tập nặng.</p>
+
+    <h2 id="lich-4">3) Lịch tập 4 buổi/tuần (Upper/Lower Split)</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/schedule/schedule-18.png" alt="Người tập lịch 4 buổi upper/lower" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Upper/Lower: tăng tần suất cho từng nhóm cơ</figcaption>
+    </figure>
+    <p>Lịch phổ biến: thứ 2 – 3 (Upper/Lower), nghỉ thứ 4, tập tiếp thứ 5 – 6 (Upper/Lower). Tổng 4 buổi.</p>
+    <ul class="list-disc pl-5">
+      <li><strong>Upper 1:</strong> Bench Press, Row, Overhead Press, Biceps Curl, Triceps Extension</li>
+      <li><strong>Lower 1:</strong> Squat, Deadlift nhẹ, Lunges, Calf Raise, Plank</li>
+      <li><strong>Upper 2:</strong> Incline Bench, Pull-up, Arnold Press, Face Pull, Hammer Curl</li>
+      <li><strong>Lower 2:</strong> Deadlift nặng, Front Squat, Hip Thrust, Leg Curl, Side Plank</li>
+    </ul>
+    <p><em>Ưu điểm:</em> cân bằng, hiệu quả cho cả tăng cơ và giảm mỡ. <br> <em>Nhược điểm:</em> cần sắp xếp thời gian hợp lý.</p>
+
+    <h2 id="lich-5">4) Lịch tập 5 buổi/tuần (Push–Pull–Legs)</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/schedule/schedule-6.jpg" alt="Người tập lịch 5 buổi push pull legs" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Push – Pull – Legs phù hợp trung cấp trở lên</figcaption>
+    </figure>
+    <p>Lịch chuẩn: Push – Pull – Legs – nghỉ – Upper – Lower – nghỉ. Tổng 5 buổi/tuần.</p>
+    <ul class="list-disc pl-5">
+      <li><strong>Push:</strong> Bench Press, Overhead Press, Lateral Raise, Triceps Pushdown</li>
+      <li><strong>Pull:</strong> Deadlift, Row, Pull-up, Face Pull, Biceps Curl</li>
+      <li><strong>Legs:</strong> Squat, Lunges, Hip Thrust, Leg Curl, Calf Raise</li>
+      <li><strong>Upper:</strong> Incline Bench, Pull-up, Arnold Press, Biceps Curl, Triceps Dip</li>
+      <li><strong>Lower:</strong> Front Squat, Deadlift nhẹ, Hip Thrust, Leg Extension, Plank</li>
+    </ul>
+    <p><em>Ưu điểm:</em> chi tiết, dễ tăng cơ nhanh. <br> <em>Nhược điểm:</em> cần nhiều thời gian, không hợp người mới.</p>
+
+    <h2 id="chon">5) Cách chọn lịch tập phù hợp</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-9.jpg" alt="5) Cách chọn lịch tập phù hợp" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Người mới, bận rộn:</strong> 3 buổi/tuần (Full body)</li>
+      <li><strong>Người trung cấp:</strong> 4 buổi/tuần (Upper/Lower)</li>
+      <li><strong>Người nhiều thời gian, muốn tối ưu:</strong> 5 buổi/tuần (PPL)</li>
+    </ul>
+
+    <h2 id="loi">6) Sai lầm thường gặp</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/schedule/schedule-9.jpg" alt="6) Sai lầm thường gặp" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Tập quá dày, không có ngày nghỉ</li>
+      <li>Bỏ qua bài compound, chỉ tập isolation</li>
+      <li>Không progressive overload → không tiến bộ</li>
+      <li>Copy lịch của người khác mà không phù hợp với thể trạng</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./ky-thuat-compound.html">Kỹ thuật compound cơ bản</a></li>
+        <li><a href="./phuc-hoi-nghi-ngoi.html">Nghỉ ngơi &amp; phục hồi</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Kết hợp lịch tập với app TDEE để tính calo, macro và theo dõi tiến bộ.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

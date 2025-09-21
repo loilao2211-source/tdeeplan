@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lợi ích Tập Gym — TDEE Planner</title>
+<link rel="canonical" href="/HTML/gym/loi-ich-tap-gym.html" />
+<link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Lợi Ích Khoa Học của việc Tập Gym">
+<meta property="og:description" content="Sức khỏe tim mạch, Cơ – xương – khớp, Chuyển hoá & kiểm soát cân nặng, Sức khoẻ tinh thần, Giấc ngủ & phục hồi, Lịch tập mẫu cho người mới.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/loi-ich-tap-gym.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/generic/generic-7.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Lợi Ích Khoa Học của việc Tập Gym",
+  "description": "Sức khỏe tim mạch, Cơ – xương – khớp, Chuyển hoá & kiểm soát cân nặng, Sức khoẻ tinh thần, Giấc ngủ & phục hồi, Lịch tập mẫu cho người mới.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/generic/generic-7.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/loi-ich-tap-gym.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Lợi Ích Khoa Học của việc Tập Gym", "item": "https://tdeeplan.com/HTML/gym/loi-ich-tap-gym.html" }
+  ]
+}
+</script>
+
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Lợi Ích Khoa Học của việc Tập Gym</h1>
+<figure class="post-hero">
+  <img src="../assets/generic/generic-7.jpg" alt="Lợi ích tập gym cho sức khỏe và vóc dáng" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Nội dung chỉ nhằm mục đích giáo dục và tham khảo. 
+      Không thay thế tư vấn y khoa cá nhân. Hãy tham khảo bác sĩ/HLV có chuyên môn trước khi áp dụng.
+    </aside>
+
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#tim-mach">1. Sức khỏe tim mạch</a></li>
+        <li><a href="#co-xuong">2. Cơ – xương – khớp</a></li>
+        <li><a href="#chuyen-hoa">3. Chuyển hoá &amp; kiểm soát cân nặng</a></li>
+        <li><a href="#tinh-than">4. Sức khoẻ tinh thần</a></li>
+        <li><a href="#giac-ngu">5. Giấc ngủ &amp; phục hồi</a></li>
+        <li><a href="#lich-mau">6. Lịch tập mẫu cho người mới</a></li>
+      </ul>
+    </nav>
+
+  
+
+    <h2 id="tim-mach">1. Sức khỏe tim mạch</h2>
+
+
+    <p>Tập gym, đặc biệt là các bài compound và cardio, giúp cải thiện lưu thông máu, giảm huyết áp và tăng cường sức khỏe tim mạch. Theo nhiều nghiên cứu, tập luyện sức mạnh ít nhất 2 lần/tuần giúp giảm nguy cơ bệnh tim mạch 20–30%.</p>
+    <figure>
+      <img src="/HTML/assets/generic/generic-9.jpg" alt="Đạp xe cải thiện sức khoẻ tim mạch" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Đạp xe giúp tim mạch khoẻ mạnh hơn</figcaption>
+    </figure>
+
+    <h2 id="co-xuong">2. Cơ – xương – khớp</h2>
+
+
+    <p>Tập tạ tạo áp lực cơ học lên xương, giúp tăng mật độ xương, giảm nguy cơ loãng xương. Ngoài ra, các nhóm cơ lớn như chân, lưng, ngực khi được rèn luyện giúp cơ thể cân đối và chắc khoẻ.</p>
+    <figure>
+      <img src="/HTML/assets/strength/strength-3.jpg" alt="Người tập squat với tạ" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Squat giúp tăng cường cơ chân và cột sống</figcaption>
+    </figure>
+
+    <h2 id="chuyen-hoa">3. Chuyển hoá &amp; kiểm soát cân nặng</h2>
+<p>Tập luyện làm tăng BMR (Basal Metabolic Rate) – nghĩa là cơ thể tiêu hao nhiều năng lượng hơn ngay cả khi nghỉ ngơi. Khi kết hợp với chế độ ăn cân đối, bạn có thể dễ dàng kiểm soát cân nặng, giảm mỡ và duy trì tỷ lệ mỡ cơ thể hợp lý.</p>
+
+    <figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-1.jpg" alt="3. Chuyển hoá &amp; kiểm soát cân nặng" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    
+    <h2 id="tinh-than">4. Sức khoẻ tinh thần</h2>
+
+    <p>Tập gym giải phóng endorphin – hormone “hạnh phúc”, giúp giảm stress, cải thiện tâm trạng, tăng sự tự tin. Nghiên cứu cho thấy tập luyện 30 phút mỗi ngày giảm nguy cơ trầm cảm tới 25%.</p>
+
+    
+
+    <h2 id="giac-ngu">5. Giấc ngủ &amp; phục hồi</h2>
+
+
+    <p>Người tập luyện thường xuyên ngủ sâu hơn, dễ đi vào giấc ngủ và ít bị thức giấc ban đêm. Đây là yếu tố quan trọng cho quá trình phục hồi cơ bắp và hệ thần kinh.</p>
+    <figure>
+      <img src="/HTML/assets/recovery/recovery-9.jpg" alt="Ngủ sâu giúp phục hồi cơ bắp" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Ngủ đủ giấc để tối ưu hiệu quả tập luyện</figcaption>
+    </figure>
+
+    <h2 id="lich-mau">6. Lịch tập mẫu cho người mới</h2>
+
+
+    <ul class="list-disc pl-5">
+      <li>Ngày 1: Toàn thân (Squat, Bench Press, Row)</li>
+      <li>Ngày 2: Cardio nhẹ hoặc nghỉ</li>
+      <li>Ngày 3: Toàn thân (Deadlift, Overhead Press, Pull-up)</li>
+      <li>Ngày 4: Nghỉ</li>
+      <li>Ngày 5: Toàn thân (Front Squat, Incline Press, Chin-up)</li>
+      <li>Ngày 6: Cardio nhẹ/đi bộ</li>
+      <li>Ngày 7: Nghỉ</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./cach-tinh-tdee.html">Cách tính TDEE &amp; chọn mức calo</a></li>
+        <li><a href="./macro-cho-nguoi-moi.html">Macro cho người mới</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE của mình để tính calo &amp; đặt mục tiêu mỗi ngày.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a href="../privacy.html">Privacy</a> • <a href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

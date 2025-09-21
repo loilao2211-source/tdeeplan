@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kỹ thuật compound cơ bản: Squat – Bench Press – Deadlift | TDEE Planner</title>
+  <meta name="description" content="Hướng dẫn kỹ thuật 3 bài tập compound cơ bản: Squat, Bench Press, Deadlift. Giúp tăng cơ, tăng sức mạnh và hạn chế chấn thương. Có hình minh hoạ và mẹo thực hành.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/ky-thuat-compound.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Kỹ Thuật Compound Cơ Bản: Squat – Bench Press – Deadlift">
+<meta property="og:description" content=" Bài tập compound là gì?, Squat như thế nào, Bench Press như nào là đúng, Deadlift sao không bị đau lưng, lỗi phổ biến khi tập compound.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/ky-thuat-compound.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/strength/strength-4.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kỹ Thuật Compound Cơ Bản: Squat – Bench Press – Deadlift",
+  "description": " Bài tập compound là gì?, Squat như thế nào, Bench Press như nào là đúng, Deadlift sao không bị đau lưng, lỗi phổ biến khi tập compound.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/strength/strength-4.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/ky-thuat-compound.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Kỹ Thuật Compound Cơ Bản: Squat – Bench Press – Deadlift", "item": "https://tdeeplan.com/HTML/gym/ky-thuat-compound.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Kỹ Thuật Compound Cơ Bản: Squat – Bench Press – Deadlift</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/strength/strength-4.jpg" alt="Squat Bench Deadlift đúng kỹ thuật" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Nội dung chỉ mang tính giáo dục thể hình. Hãy tham khảo HLV nếu bạn mới tập để đảm bảo an toàn.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#compound">1. Bài tập compound là gì?</a></li>
+        <li><a href="#squat">2. Squat</a></li>
+        <li><a href="#bench">3. Bench Press</a></li>
+        <li><a href="#deadlift">4. Deadlift</a></li>
+        <li><a href="#loi">5. Lỗi phổ biến khi tập</a></li>
+        <li><a href="#meo">6. Mẹo tối ưu &amp; an toàn</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="compound">1) Bài tập compound là gì?</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-8.jpg" alt="1) Bài tập compound là gì?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p><strong>Bài tập compound</strong> là những động tác sử dụng nhiều nhóm cơ và nhiều khớp cùng lúc, ví dụ Squat, Bench Press, Deadlift, Overhead Press, Pull-up. Đây là nền tảng để xây dựng cơ bắp và sức mạnh toàn diện.</p>
+    <p>Ưu điểm:</p>
+    <ul class="list-disc pl-5">
+      <li>Kích hoạt nhiều nhóm cơ cùng lúc → hiệu quả cao</li>
+      <li>Tăng sức mạnh chức năng, áp dụng trong đời sống</li>
+      <li>Giúp tiết kiệm thời gian so với các bài cô lập (isolation)</li>
+      <li>Kích thích tiết hormone tăng trưởng, testosterone tự nhiên</li>
+    </ul>
+
+    <h2 id="squat">2) Squat</h2>
+
+
+    <p>Squat là “vua của các bài tập”. Tác động mạnh lên cơ đùi, mông, lưng dưới và cả core.</p>
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-3.jpg" alt="Kỹ thuật squat cơ bản với thanh tạ" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Squat giúp tăng cơ chân và cải thiện sức mạnh tổng thể</figcaption>
+    </figure>
+    <h3>Kỹ thuật chuẩn</h3>
+    <ul class="list-disc pl-5">
+      <li>Thanh tạ đặt trên vai sau, nắm chắc, khuỷu tay hướng xuống</li>
+      <li>Ngực mở, lưng thẳng, siết core</li>
+      <li>Ngồi xuống đến khi đùi song song sàn hoặc thấp hơn</li>
+      <li>Đẩy gót chân, đứng thẳng lên, không khóa gối quá mạnh</li>
+    </ul>
+
+    <h2 id="bench">3) Bench Press</h2>
+
+
+    <p>Bench Press là bài tập ngực phổ biến nhất, đồng thời rèn vai và tay sau.</p>
+    <figure class="my-6">
+      <img src="/HTML/assets//strength/strength-13.jpg" alt="Kỹ thuật bench press cơ bản" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Bench Press: tập trung vào ngực, vai và tay sau</figcaption>
+    </figure>
+    <h3>Kỹ thuật chuẩn</h3>
+    <ul class="list-disc pl-5">
+      <li>Nằm ngửa, bàn chân đặt vững trên sàn</li>
+      <li>Thanh tạ ngang mắt, hạ xuống ngực giữa, khuỷu gập 75–90°</li>
+      <li>Đẩy thanh lên theo đường thẳng, siết core, không cong lưng quá nhiều</li>
+    </ul>
+
+    <h2 id="deadlift">4) Deadlift</h2>
+
+
+    <p>Deadlift giúp phát triển lưng, mông, gân kheo, core và cẳng tay. Đây là bài tập kiểm tra sức mạnh tổng thể.</p>
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-12.jpg" alt="Kỹ thuật deadlift cơ bản" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Deadlift: một trong ba bài compound nền tảng</figcaption>
+    </figure>
+    <h3>Kỹ thuật chuẩn</h3>
+    <ul class="list-disc pl-5">
+      <li>Chân rộng bằng vai, thanh tạ sát cẳng chân</li>
+      <li>Nắm thanh bằng overhand hoặc mixed grip</li>
+      <li>Lưng thẳng, hông thấp, ngực mở</li>
+      <li>Kéo tạ sát người, đứng thẳng, siết mông trên cùng</li>
+    </ul>
+
+    <h2 id="loi">5) Lỗi phổ biến khi tập</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-5.jpg" alt="5) Lỗi phổ biến khi tập" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Squat:</strong> lưng gù, đầu gối xô vào trong, nâng gót chân</li>
+      <li><strong>Bench Press:</strong> cong lưng quá mức, hạ tạ sai vị trí</li>
+      <li><strong>Deadlift:</strong> lưng cong, giật tạ bằng lưng thay vì chân</li>
+    </ul>
+
+    <h2 id="meo">6) Mẹo tối ưu &amp; an toàn</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/flexibility/flexibility-1.jpg" alt="6) Mẹo tối ưu &amp; an toàn" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Khởi động kỹ 10–15 phút trước khi tập</li>
+      <li>Tập trung kỹ thuật trước, không nặng quá sớm</li>
+      <li>Dùng dây đai, wrist wrap khi cần</li>
+      <li>Ghi log để theo dõi tiến bộ</li>
+      <li>Nghe tín hiệu cơ thể, tránh overtraining</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./phuc-hoi-nghi-ngoi.html">Nghỉ ngơi &amp; phục hồi</a></li>
+        <li><a href="./an-truoc-trong-sau-buoi-tap.html">Ăn gì trước – trong – sau buổi tập</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để kết hợp kế hoạch tập luyện và dinh dưỡng khoa học.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

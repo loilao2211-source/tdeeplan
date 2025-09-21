@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cách tính TDEE và chọn mức calo mục tiêu | TDEE Planner</title>
+  <meta name="description" content="Hướng dẫn chi tiết cách tính BMR, TDEE, chọn mức calo giảm mỡ, tăng cơ hoặc duy trì. Có ví dụ minh hoạ và công thức chuẩn.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/posts/cach-tinh-tdee.html">
+  <link rel="stylesheet" href="/main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Cách Tính TDEE Và Chọn Mức Calo Mục Tiêu">
+<meta property="og:description" content="TDEE, tính TDEE, TDEE Calculator, TDEE Plan, Chọn mức calo mục tiêu, Activity Factor.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/cach-tinh-tdee.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Cách Tính TDEE Và Chọn Mức Calo Mục Tiêu",
+  "description": "TDEE, tính TDEE, TDEE Calculator, TDEE Plan, Chọn mức calo mục tiêu, Activity Factor.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/cach-tinh-tdee.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Cách Tính TDEE Và Chọn Mức Calo Mục Tiêu", "item": "https://tdeeplan.com/HTML/gym/cach-tinh-tdee.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Cách Tính TDEE Và Chọn Mức Calo Mục Tiêu</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/nutrition/nutrition-1.jpg" alt="Minh họa cách tính TDEE và nhu cầu calo hằng ngày" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Nội dung chỉ mang tính giáo dục. Không thay thế cho tư vấn y khoa hoặc huấn luyện viên chuyên nghiệp.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#bmr">1. BMR và TDEE là gì?</a></li>
+        <li><a href="#activity">2. Các mức Activity Factor</a></li>
+        <li><a href="#chon-muc-tieu">3. Chọn mức calo mục tiêu</a></li>
+        <li><a href="#vi-du">4. Ví dụ minh họa</a></li>
+        <li><a href="#loi-thuong-gap">5. Lỗi thường gặp khi tính TDEE</a></li>
+      </ul>
+    </nav>
+
+    
+
+    <h2 id="bmr">1. BMR và TDEE là gì?</h2>
+
+
+    <p><strong>BMR (Basal Metabolic Rate)</strong> là mức năng lượng cơ thể cần tiêu hao để duy trì sự sống trong trạng thái nghỉ ngơi hoàn toàn (hít thở, tuần hoàn máu, hoạt động tế bào...).</p>
+    <p>Công thức phổ biến: <br>
+      <em>Nam:</em> 88.36 + (13.4 × cân nặng kg) + (4.8 × chiều cao cm) – (5.7 × tuổi)<br>
+      <em>Nữ:</em> 447.6 + (9.2 × cân nặng kg) + (3.1 × chiều cao cm) – (4.3 × tuổi)</p>
+
+
+
+    <p><strong>TDEE (Total Daily Energy Expenditure)</strong> = BMR × Activity Factor. Đây là tổng năng lượng bạn tiêu hao trong 1 ngày, bao gồm cả vận động và sinh hoạt.</p>
+    <figure>
+  <img src="/HTML/assets/schedule/schedule-3.png"
+       alt="Bảng ví dụ tính TDEE và macro"
+       loading="lazy" width="1200" height="628">
+  <figcaption>Bảng ví dụ tính TDEE và macro.</figcaption>
+</figure>
+
+    <h2 id="activity">2. Các mức Activity Factor</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-3.jpg" alt="3. Các mức Activity Factor" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>1.2: Ít vận động (công việc văn phòng, ít tập luyện)</li>
+      <li>1.375: Vận động nhẹ (1–3 buổi/tuần)</li>
+      <li>1.55: Vận động vừa (3–5 buổi/tuần)</li>
+      <li>1.725: Vận động nhiều (6–7 buổi/tuần)</li>
+      <li>1.9: Vận động rất nhiều (VĐV, lao động nặng)</li>
+    </ul>
+
+    <h2 id="chon-muc-tieu">3. Chọn mức calo mục tiêu</h2>
+    <figure>
+      <img src="/HTML/assets/nutrition/nutrition-2.jpg" alt="Bữa ăn cân bằng với protein, carb, fat" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Ăn uống phù hợp giúp đạt mục tiêu</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Giảm mỡ:</strong> Ăn ít hơn TDEE 300–500 kcal/ngày</li>
+      <li><strong>Tăng cơ:</strong> Ăn nhiều hơn TDEE 200–400 kcal/ngày</li>
+      <li><strong>Duy trì:</strong> Ăn đúng bằng TDEE</li>
+    </ul>
+    <p>Lưu ý: Không nên ăn thấp hơn BMR, vì sẽ gây hại sức khỏe và mất cơ.</p>
+
+    <h2 id="vi-du">4. Ví dụ minh họa</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-2.jpg" alt="5. Ví dụ minh họa" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p><em>Nam, 25 tuổi, 70kg, 170cm, tập 4 buổi/tuần:</em></p>
+    <ul class="list-disc pl-5">
+      <li>BMR = 1666 kcal</li>
+      <li>Activity Factor = 1.55 → TDEE ≈ 2582 kcal</li>
+      <li>Mục tiêu giảm mỡ: 2100–2200 kcal/ngày</li>
+    </ul>
+  
+
+    <h2 id="loi-thuong-gap">5. Lỗi thường gặp khi tính TDEE</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/schedule/schedule-4.jpg" alt="6. Lỗi thường gặp khi tính TDEE" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Chọn sai Activity Factor (thường đánh giá quá cao mức vận động)</li>
+      <li>Ăn dưới BMR → mệt mỏi, dễ bỏ cuộc</li>
+      <li>Không theo dõi cân nặng và số đo → khó biết calo đã phù hợp chưa</li>
+      <li>Bỏ qua yếu tố NEAT (hoạt động ngoài tập luyện: đi bộ, leo cầu thang...)</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./macro-cho-nguoi-moi.html">Macro là gì? Cách chia P–C–F</a></li>
+        <li><a href="./giam-mo-khong-mat-co.html">Giảm mỡ thông minh</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE của mình để tính calo &amp; đặt mục tiêu mỗi ngày.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a href="../privacy.html">Privacy</a> • <a href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

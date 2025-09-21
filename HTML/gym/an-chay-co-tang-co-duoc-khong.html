@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ăn chay có tăng cơ được không? ăn chay như thế nào để tăng cơ? | TDEE Planner</title>
+  <meta name="description" content="Ăn chay có tăng cơ được không? Giải đáp khoa học, nguồn protein thực vật, cách xây dựng chế độ dinh dưỡng và tập luyện để tăng cơ khi ăn chay.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/an-chay-co-tang-co-duoc-khong.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Ăn Chay Có Tăng Cơ Được Không?">
+<meta property="og:description" content="Vì sao nhiều người nghĩ ăn chay khó tăng cơ?,Các nguồn protein chay phổ biến, Cách xây dựng chế độ dinh dưỡng tăng cơ khi ăn chay, protein thực vật có đủ không?.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/an-chay-co-tang-co-duoc-khong.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Ăn Chay Có Tăng Cơ Được Không?",
+  "description": "Vì sao nhiều người nghĩ ăn chay khó tăng cơ?,Các nguồn protein chay phổ biến, Cách xây dựng chế độ dinh dưỡng tăng cơ khi ăn chay, protein thực vật có đủ không?.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/an-chay-co-tang-co-duoc-khong.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Ăn Chay Có Tăng Cơ Được Không?", "item": "https://tdeeplan.com/HTML/gym/an-chay-co-tang-co-duoc-khong.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+<div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Ăn Chay Có Tăng Cơ Được Không?</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/nutrition/nutrition-1.jpg" alt="Ăn chay có tăng cơ không" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Nhiều người lo ngại rằng ăn chay sẽ thiếu protein và khó tăng cơ. Thực tế, với chế độ ăn chay hợp lý và tập luyện đúng, việc tăng cơ hoàn toàn khả thi.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#lo-ngai">1. Vì sao nhiều người nghĩ ăn chay khó tăng cơ?</a></li>
+        <li><a href="#khoa-hoc">2. Góc nhìn khoa học: protein thực vật có đủ không?</a></li>
+        <li><a href="#nguon-protein">3. Các nguồn protein chay phổ biến</a></li>
+        <li><a href="#dinh-duong">4. Cách xây dựng chế độ dinh dưỡng tăng cơ khi ăn chay</a></li>
+        <li><a href="#tap-luyen">5. Nguyên tắc tập luyện cho người ăn chay</a></li>
+        <li><a href="#tong-ket">6. Tổng kết</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="lo-ngai">1) Vì sao nhiều người nghĩ ăn chay khó tăng cơ?</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/nutrition/nutrition-16.jpg" alt="1) Vì sao nhiều người nghĩ ăn chay khó tăng cơ?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Đa số cho rằng ăn chay thiếu protein, axit amin thiết yếu và năng lượng để xây dựng cơ bắp. Thêm vào đó, nhiều người ăn chay chưa biết cách phối hợp thực phẩm nên dẫn đến thiếu hụt dinh dưỡng.</p>
+
+    <h2 id="khoa-hoc">2) Góc nhìn khoa học: protein thực vật có đủ không?</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/nutrition/nutrition-3.jpg" alt="Nguồn protein thực vật đa dạng" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Protein thực vật đủ để xây dựng cơ bắp nếu kết hợp đúng</figcaption>
+    </figure>
+    <p>Theo các nghiên cứu dinh dưỡng thể thao, tổng lượng protein nạp vào quan trọng hơn nguồn gốc. Protein thực vật có thể thiếu một số axit amin, nhưng khi phối hợp nhiều loại (ví dụ: gạo + đậu) thì vẫn đủ axit amin thiết yếu.</p>
+
+    <h2 id="nguon-protein">3) Các nguồn protein chay phổ biến</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/nutrition/nutrition-4.jpg" alt="3) Các nguồn protein chay phổ biến" loading="lazy" decoding="async" width="1200" height="630">
+<figcaption class="text-xs text-gray-500 mt-2">Bột protein thực vật hỗ trợ tiện lợi cho người ăn chay</figcaption>
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Đậu nành và sản phẩm:</strong> đậu phụ, tempeh, sữa đậu nành</li>
+      <li><strong>Đậu lăng, đậu gà, đậu đen</strong></li>
+      <li><strong>Ngũ cốc nguyên hạt:</strong> yến mạch, quinoa, gạo lứt</li>
+      <li><strong>Hạt và quả khô:</strong> hạnh nhân, hạt chia, hạt bí, óc chó</li>
+      <li><strong>Bột protein chay:</strong> whey isolate thực vật, pea protein, soy protein</li>
+    </ul>
+    
+
+    <h2 id="dinh-duong">4) Cách xây dựng chế độ dinh dưỡng tăng cơ khi ăn chay</h2>
+
+
+    <ul class="list-disc pl-5">
+      <li><strong>Lượng protein:</strong> 1.6–2.2g protein/kg cân nặng/ngày</li>
+      <li><strong>Chia nhỏ bữa:</strong> 4–5 bữa/ngày để cơ thể hấp thụ tốt</li>
+      <li><strong>Đủ calo:</strong> ăn thặng dư calo để tăng cơ, không ăn thiếu năng lượng</li>
+      <li><strong>Kết hợp đa dạng:</strong> phối hợp ngũ cốc và họ đậu để đủ axit amin</li>
+      <li><strong>Bổ sung vitamin B12, omega-3:</strong> do chế độ chay dễ thiếu</li>
+    </ul>
+
+    <h2 id="tap-luyen">5) Nguyên tắc tập luyện cho người ăn chay</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-9.jpg" alt="Người tập gym ăn chay" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Ăn chay vẫn có thể tập nặng và tăng cơ bắp</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Tập kháng lực:</strong> ưu tiên squat, deadlift, bench press</li>
+      <li><strong>Tăng tải dần:</strong> Progressive overload để cơ phát triển</li>
+      <li><strong>Cardio vừa phải:</strong> duy trì sức khỏe tim mạch, không đốt quá nhiều calo</li>
+      <li><strong>Ngủ đủ:</strong> ít nhất 7–8 tiếng/đêm để tối ưu hormone tăng trưởng</li>
+    </ul>
+
+    <h2 id="tong-ket">6) Tổng kết</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-2.jpg" alt="6) Tổng kết" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Ăn chay <strong>vẫn có thể tăng cơ</strong> nếu bạn đảm bảo đủ protein, calo và tập luyện khoa học. Điểm mấu chốt là kết hợp nhiều nguồn protein thực vật và duy trì chế độ tập tạ hợp lý. Ăn chay không phải rào cản cho mục tiêu hình thể nếu biết cách.</p>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./cardio-vs-weight-training.html">Cardio và Weight Training – nên ưu tiên cái nào?</a></li>
+        <li><a href="./dinh-duong-giam-mo.html">Dinh dưỡng khi giảm mỡ</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để thiết kế chế độ ăn chay – tính TDEE, macro và gợi ý thực đơn phù hợp.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

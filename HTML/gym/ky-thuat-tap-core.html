@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kỹ thuật tập Core (bụng, lưng dưới) để hỗ trợ toàn thân | TDEE Planner</title>
+  <meta name="description" content="Hướng dẫn các bài tập core: plank, dead bug, back extension. Tăng sức mạnh bụng, lưng dưới để cải thiện squat, deadlift và hạn chế chấn thương.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/ky-thuat-tap-core.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Kỹ Thuật tập Core (Bụng, Lưng dưới) Để Bổ Trợ">
+<meta property="og:description" content=" Core là gì?, Vai trò của core trong tập luyện, Các bài core cơ bản Các bài core nâng cao, Lỗi thường gặp khi tập core, Mẹo tập core hiệu quả.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/ky-thuat-tap-core.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/generic/generic-13.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kỹ Thuật tập Core (Bụng, Lưng dưới) Để Bổ Trợ",
+  "description": "Core là gì?, Vai trò của core trong tập luyện, Các bài core cơ bản Các bài core nâng cao, Lỗi thường gặp khi tập core, Mẹo tập core hiệu quả.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/generic/generic-13.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/ky-thuat-tap-core.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Kỹ Thuật tập Core (Bụng, Lưng dưới) Để Bổ Trợ", "item": "https://tdeeplan.com/HTML/gym/ky-thuat-tap-core.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Kỹ Thuật tập Core (Bụng, Lưng dưới) Để Bổ Trợ</h1>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-13.jpg" alt="1) Core là gì?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Core khỏe không chỉ để có bụng 6 múi, mà còn giúp bạn squat, deadlift, chạy và sinh hoạt hằng ngày an toàn, hiệu quả hơn.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#core-la-gi">1. Core là gì?</a></li>
+        <li><a href="#vai-tro">2. Vai trò của core trong tập luyện</a></li>
+        <li><a href="#bai-co-ban">3. Các bài core cơ bản</a></li>
+        <li><a href="#bai-nang-cao">4. Các bài core nâng cao</a></li>
+        <li><a href="#loi">5. Lỗi thường gặp khi tập core</a></li>
+        <li><a href="#meo">6. Mẹo tập core hiệu quả</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="core-la-gi">1) Core là gì?</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-6.jpg" alt="1) Core là gì?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p><strong>Core</strong> bao gồm cơ bụng, cơ chéo bụng, cơ lưng dưới, cơ hông – tất cả nhóm cơ giúp ổn định thân người. Đây là “nền móng” để thực hiện mọi chuyển động, từ nâng tạ, chạy bộ, đến việc cúi người nhặt đồ.</p>
+
+    <h2 id="vai-tro">2) Vai trò của core trong tập luyện</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-9.jpg" alt="2) Vai trò của core trong tập luyện" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Bảo vệ cột sống:</strong> siết core đúng giảm áp lực lên lưng</li>
+      <li><strong>Tăng hiệu suất:</strong> core mạnh giúp squat, deadlift, bench chắc chắn hơn</li>
+      <li><strong>Cải thiện tư thế:</strong> đứng, ngồi thẳng lưng tự nhiên</li>
+      <li><strong>Phòng ngừa chấn thương:</strong> đặc biệt là đau lưng và hông</li>
+    </ul>
+
+    <h2 id="bai-co-ban">3) Các bài core cơ bản</h2>
+
+
+    <h3>Plank</h3>
+    <figure class="my-6">
+      <img src="/HTML/assets/generic/generic-14.jpg" alt="Bài tập plank cơ bản cho core" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Plank: bài tập nền tảng cho core</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Cẳng tay chống xuống, vai – hông – gót chân thành 1 đường thẳng</li>
+      <li>Siết bụng, không để lưng võng</li>
+      <li>Giữ 20–60 giây, tăng dần thời gian</li>
+    </ul>
+
+    <h3>Dead Bug</h3>
+    
+    <ul class="list-disc pl-5">
+      <li>Nằm ngửa, tay chân đưa lên</li>
+      <li>Hạ tay phải + chân trái xuống, siết bụng, giữ lưng chạm sàn</li>
+      <li>Đổi bên, lặp lại 10–12 reps</li>
+    </ul>
+
+    <h3>Glute Bridge</h3>
+    <ul class="list-disc pl-5">
+      <li>Nằm ngửa, gối gập, chân đặt sát sàn</li>
+      <li>Nâng hông lên, siết mông, bụng</li>
+      <li>Giữ 2–3 giây rồi hạ xuống</li>
+    </ul>
+
+    <h2 id="bai-nang-cao">4) Các bài core khác</h2>
+
+
+    <h3>Back Extension</h3>
+    <figure class="my-6">
+      <img src="/HTML/assets/generic/generic-11.jpg" alt="Back extension tăng sức mạnh lưng dưới" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Back Extension: tăng sức mạnh lưng dưới</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Nằm úp trên ghế Roman Chair, hông cố định</li>
+      <li>Gập người xuống, sau đó ngửa lên thẳng</li>
+      <li>Có thể cầm đĩa tạ trước ngực để tăng độ khó</li>
+    </ul>
+
+    <h3>Hanging Leg Raise</h3>
+    <ul class="list-disc pl-5">
+      <li>Treo người trên xà, chân duỗi thẳng</li>
+      <li>Nâng chân lên ngang hông hoặc cao hơn</li>
+      <li>Siết bụng, không đung đưa</li>
+    </ul>
+
+    <h2 id="loi">5) Lỗi thường gặp khi tập core</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-10.jpg" alt="5) Lỗi thường gặp khi tập core" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Plank: võng lưng, mông quá cao</li>
+      <li>Dead bug: không siết bụng, lưng rời sàn</li>
+      <li>Back extension: ngửa lưng quá đà → đau lưng</li>
+      <li>Tập bụng hằng ngày, không để cơ nghỉ</li>
+    </ul>
+
+    <h2 id="meo">6) Mẹo tập core hiệu quả</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-12.jpg" alt="6) Mẹo tập core hiệu quả" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Kết hợp core với buổi tập chính (cuối buổi hoặc xen kẽ)</li>
+      <li>Tập 2–3 lần/tuần, không cần ngày nào cũng tập</li>
+      <li>Ưu tiên chất lượng hơn số lượng (giữ form chuẩn)</li>
+      <li>Siết bụng trong cả bài tập toàn thân (squat, deadlift)</li>
+      <li>Kết hợp thở bụng để tăng hiệu quả</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./chan-thuong-khi-tap-gym.html">Chấn thương thường gặp và cách phòng tránh</a></li>
+        <li><a href="./progressive-overload.html">Progressive Overload – Nguyên tắc tăng tạ</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để xây dựng lịch tập core cân đối và theo dõi tiến bộ.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

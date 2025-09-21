@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ăn gì trước – trong – sau buổi tập | TDEE Planner</title>
+  <meta name="description" content="Hướng dẫn chi tiết ăn gì trước, trong và sau buổi tập để tối ưu hiệu suất và phục hồi. Có ví dụ thực đơn dễ áp dụng.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/an-truoc-trong-sau-buoi-tap.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Open Graph & Twitter -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Ăn Gì Trước – Trong – Sau Buổi Tập">
+<meta property="og:description" content="Ăn gì trước buổi tập, Ăn gì trong buổi tập,Ăn gì sau buổi tập, lên thực đơn như thế nào,">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/an-truoc-trong-sau-buoi-tap.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Ăn Gì Trước – Trong – Sau Buổi Tập",
+  "description": "Ăn gì trước buổi tập, Ăn gì trong buổi tập,Ăn gì sau buổi tập, lên thực đơn như thế nào,",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/an-truoc-trong-sau-buoi-tap.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Ăn Gì Trước – Trong – Sau Buổi Tập", "item": "https://tdeeplan.com/HTML/gym/an-truoc-trong-sau-buoi-tap.html" }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+ <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Ăn Gì Trước  – Trong – Sau Buổi Tập</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/nutrition/nutrition-1.jpg" alt="Bữa ăn trước, trong và sau buổi tập" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Bài viết chỉ nhằm mục đích giáo dục dinh dưỡng cơ bản, không thay thế tư vấn y tế. 
+      Điều chỉnh lượng ăn theo thể trạng và mục tiêu cá nhân.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#truoc-tap">1. Ăn gì trước buổi tập</a></li>
+        <li><a href="#trong-tap">2. Ăn gì trong buổi tập</a></li>
+        <li><a href="#sau-tap">3. Ăn gì sau buổi tập</a></li>
+        <li><a href="#thuc-don">4. Ví dụ thực đơn</a></li>
+        <li><a href="#loi">5. Lỗi thường gặp</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="truoc-tap">1) Ăn gì trước buổi tập</h2>
+
+    <p><strong>Mục tiêu:</strong> cung cấp năng lượng bền vững, tránh đầy bụng. Ăn trước tập 60–90 phút.</p>
+    <figure class="my-6">
+      <img src="/HTML/assets/nutrition/nutrition-2.jpg" alt="Bữa ăn nhẹ trước tập: chuối, yến mạch, sữa chua" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Bữa nhẹ trước tập: chuối, yến mạch, sữa chua Hy Lạp</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Carb phức</strong>: yến mạch, bánh mì nguyên cám, khoai</li>
+      <li><strong>Đạm nhẹ</strong>: sữa chua Hy Lạp, whey shake</li>
+      <li><strong>Tránh</strong>: thức ăn nhiều dầu mỡ, nhiều chất xơ khó tiêu ngay trước tập</li>
+    </ul>
+
+    <h2 id="trong-tap">2) Ăn gì trong buổi tập</h2>
+
+    <p>Với buổi tập &lt;30–60 phút: chỉ cần nước. Buổi tập dài hoặc cường độ cao &gt;90 phút: nên bổ sung carb nhanh + điện giải.</p>
+    <figure class="my-6">
+      <img src="/HTML/assets/nutrition/nutrition-4.jpg" alt="Uống nước trong khi tập luyện" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Bù nước và điện giải trong khi tập</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Nước lọc 200–300 ml mỗi 20 phút</li>
+      <li>Nếu tập dài: nước điện giải hoặc sports drink</li>
+      <li>Carb nhanh: chuối chín, gel năng lượng (nếu tập bền)</li>
+    </ul>
+
+    <h2 id="sau-tap">3) Ăn gì sau buổi tập</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/nutrition/nutrition-10.jpg" alt="3) Ăn gì sau buổi tập" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p><strong>Mục tiêu:</strong> phục hồi glycogen, cung cấp amino acid để tái tạo cơ. Thời gian vàng: trong vòng 1–2 giờ sau tập.</p>
+    <figure class="my-6">
+      <img src="/HTML/assets/nutrition/nutrition-6.jpg" alt="Bữa ăn sau tập: ức gà, rau xanh, cơm" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Ăn đủ đạm và carb sau tập để phục hồi</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Protein:</strong> 20–40 g (ức gà, cá, whey)</li>
+      <li><strong>Carb:</strong> gạo, khoai, trái cây</li>
+      <li><strong>Fat:</strong> vừa phải, tránh quá nhiều làm chậm tiêu hóa</li>
+    </ul>
+
+    <h2 id="thuc-don">4) Ví dụ thực đơn</h2>
+
+
+    <ul class="list-disc pl-5">
+      <li><strong>Trước tập:</strong> 1 lát bánh mì đen + bơ đậu phộng + 1 quả chuối</li>
+      <li><strong>Sau tập:</strong> 150g ức gà nướng + 200g cơm gạo lứt + rau củ luộc</li>
+    </ul>
+
+    <h2 id="loi">5) Lỗi thường gặp</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/nutrition/nutrition-8.jpg" alt="5) Lỗi thường gặp" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Nhịn ăn tập nặng → dễ tụt đường huyết, giảm hiệu suất</li>
+      <li>Ăn quá no ngay trước tập → đầy bụng, khó chịu</li>
+      <li>Bỏ qua bữa sau tập → chậm phục hồi, dễ mất cơ</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./macro-cho-nguoi-moi.html">Macro là gì? Cách chia Protein–Carb–Fat</a></li>
+        <li><a href="./cach-tinh-tdee.html">Cách tính TDEE &amp; chọn mức calo</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để theo dõi bữa ăn và lượng calo hằng ngày.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

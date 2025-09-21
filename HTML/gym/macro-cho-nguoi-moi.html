@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Macro là gì? Cách chia Protein–Carb–Fat cho người mới | TDEE Planner</title>
+  <meta name="description" content="Giải thích macro (Protein–Carb–Fat), vai trò từng nhóm, cách chia theo mục tiêu giảm mỡ, tăng cơ, duy trì; có ví dụ tính chi tiết.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- CSS của bạn -->
+  <link rel="stylesheet" href="/main.css">
+<!-- Canonical: sửa đúng URL public -->
+<link rel="canonical" href="https://tdeeplan.com/HTML/gym/macro-cho-nguoi-moi.html">
+
+<!-- Open Graph & Twitter Card -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TDEE Planner">
+  <meta property="og:title" content="Macro là gì? Cách chia Protein–Carb–Fat cho người mới">
+  <meta property="og:description" content="Cách chia macro theo mục tiêu giảm mỡ, tăng cơ, duy trì – có ví dụ tính cụ thể.">
+  <meta property="og:url" content="https://tdeeplan.com/HTML/gym/macro-cho-nguoi-moi.html">
+  <meta property="og:image" content="https://tdeeplan.com/HTML/assets/schedule/schedule-3.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+   <!-- GIỮ LẠI Tailwind CDN để không mất style (sau sẽ build CSS tĩnh) -->
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Macro là gì? Cách chia Protein–Carb–Fat cho người mới",
+  "description":"Giải thích macro, vai trò từng nhóm, cách chia theo mục tiêu; có ví dụ tính chi tiết.",
+  "author":{"@type":"Person","name":"TDEE Planner"},
+  "publisher":{"@type":"Organization","name":"TDEE Planner"},
+  "datePublished":"2025-09-19",
+  "dateModified":"2025-09-19",
+  "image":["https://tdeeplan.com/HTML/assets/schedule/schedule-3.png"],
+  "mainEntityOfPage":"https://tdeeplan.com/HTML/gym/macro-cho-nguoi-moi.html",
+  "inLanguage":"vi"
+}
+</script>
+
+<!-- Breadcrumb Schema (khớp đường dẫn thật) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://tdeeplan.com/"},
+    {"@type":"ListItem","position":2,"name":"Blog","item":"https://tdeeplan.com/HTML/blog.html"},
+    {"@type":"ListItem","position":3,"name":"Macro là gì? Cách chia Protein–Carb–Fat cho người mới","item":"https://tdeeplan.com/HTML/gym/macro-cho-nguoi-moi.html"}
+  ]
+}
+</script>
+
+
+ 
+</head>
+
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Macro là gì? Cách chia Protein–Carb–Fat cho người Mới Như Thế Nào? </h1>
+
+    <!-- HERO: đổi sang relative path, giữ PNG -->
+    <figure class="post-hero">
+      <img src="/HTML/assets/schedule/schedule-3.png"
+           alt="Infographic tỷ lệ protein–carb–fat cho người mới tập"
+           width="1200" height="630" loading="eager" decoding="async">
+    </figure>
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Nội dung nhằm mục đích giáo dục, không thay thế tư vấn y khoa. Điều chỉnh theo tình trạng sức khoẻ thực tế của bạn.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#macro">1. Macro là gì?</a></li>
+        <li><a href="#vai-tro">2. Vai trò của Protein – Carb – Fat</a></li>
+        <li><a href="#nguyen-tac">3. Nguyên tắc chia macro theo mục tiêu</a></li>
+        <li><a href="#quy-doi">4. Quy đổi gram ↔ kcal</a></li>
+        <li><a href="#vi-du">5. Ví dụ tính macro (2100 kcal &amp; 2500 kcal)</a></li>
+        <li><a href="#thuc-don">6. Gợi ý thực phẩm &amp; mẹo bữa ăn</a></li>
+        <li><a href="#loi">7. Lỗi thường gặp &amp; cách khắc phục</a></li>
+      </ul>
+    </nav>
+
+  
+
+    <h2 id="macro">1) Macro là gì?</h2>
+    <figure class="section-illustration">
+      <img src="/HTML/assets/nutrition/nutrition-10.jpg"
+           alt="Khái niệm macro trong dinh dưỡng"
+           loading="lazy" decoding="async" width="1200" height="630">
+    </figure>
+
+    <p><strong>Macronutrients (Macro)</strong> là 3 nhóm dinh dưỡng chính cung cấp năng lượng: <em>Protein, Carbohydrate, Fat</em>. Quản lý macro giúp bạn đạt mục tiêu <em>giảm mỡ, tăng cơ, duy trì</em> một cách chủ động và lâu dài.</p>
+
+    <h2 id="vai-tro">2) Vai trò của Protein – Carb – Fat</h2>
+    <figure class="section-illustration">
+      <img src="/HTML/assets/nutrition/nutrition-7.jpg"
+           alt="Các nhóm chất dinh dưỡng chính"
+           loading="lazy" decoding="async" width="1200" height="630">
+    <figcaption class="text-xs text-gray-500 mt-2">Nguồn đạm tốt: cá, thịt nạc, trứng, sữa chua Hy Lạp, đậu hũ…</figcaption>
+          </figure>
+
+    <h3>Protein (4 kcal/gram)</h3>
+    <p>Xây dựng/sửa chữa cơ bắp, enzyme, hormone, miễn dịch. Nên ưu tiên đủ đạm để giữ cơ khi giảm mỡ và hỗ trợ tăng cơ.</p>
+   
+
+    <h3>Carbohydrate (4 kcal/gram)</h3>
+    <p>Năng lượng ưu tiên cho não và vận động cường độ vừa–cao. Chọn <em>carb chất lượng</em>: tinh bột chậm, nhiều chất xơ, ít chế biến.</p>
+
+    <h3>Fat (9 kcal/gram)</h3>
+    <p>Hormon, hấp thu vitamin A–D–E–K, bảo vệ tế bào. Ưu tiên <em>chất béo không bão hoà</em>.</p>
+   
+     
+
+    <h2 id="nguyen-tac">3) Nguyên tắc chia macro theo mục tiêu</h2>
+    <figure class="section-illustration">
+      <img src="/HTML/assets/nutrition/nutrition-6.jpg"
+           alt="Nguyên tắc chia macro theo mục tiêu"
+           loading="lazy" decoding="async" width="1200" height="630">
+    </figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Protein:</strong> 1.6–2.2 g/kg cân nặng.</li>
+      <li><strong>Fat:</strong> 0.6–1.0 g/kg (không nên thấp hơn ~0.6 g/kg quá lâu).</li>
+      <li><strong>Carb:</strong> phần kcal còn lại sau khi trừ Protein &amp; Fat; điều chỉnh theo mức vận động.</li>
+      <li><strong>Cut (giảm mỡ):</strong> TDEE − 300~500 kcal (đừng thấp hơn BMR).</li>
+      <li><strong>Bulk sạch (tăng cơ):</strong> TDEE + 200~400 kcal.</li>
+      <li><strong>Maintain:</strong> ≈ TDEE.</li>
+    </ul>
+
+    <h2 id="quy-doi">4) Quy đổi gram ↔ kcal</h2>
+    <ul class="list-disc pl-5">
+      <li>Protein: 1 g = 4 kcal</li>
+      <li>Carb: 1 g = 4 kcal</li>
+      <li>Fat: 1 g = 9 kcal</li>
+    </ul>
+
+    <h2 id="vi-du">5) Ví dụ tính macro</h2>
+    
+
+    <p><em>Giả sử TDEE = 2580 kcal</em>. Ta làm 2 kịch bản:</p>
+    <h3>A) Giảm mỡ nhẹ ~ −450 kcal → mục tiêu ≈ <strong>2100 kcal</strong></h3>
+    <ol class="list-decimal pl-5">
+      <li><strong>Protein</strong>: 2.0 g/kg (vd 70 kg) → 140 g = 560 kcal</li>
+      <li><strong>Fat</strong>: 0.8 g/kg → 56 g = 504 kcal</li>
+      <li><strong>Carb</strong>: 2100 − (560 + 504) = 1036 kcal → 259 g</li>
+    </ol>
+    <p><strong>Kết quả:</strong> <code>P 140 g / C 259 g / F 56 g</code> (~2100 kcal)</p>
+
+    <h3>B) Tăng cơ sạch +300 kcal → mục tiêu ≈ <strong>2500 kcal</strong></h3>
+    <ol class="list-decimal pl-5">
+      <li><strong>Protein</strong>: 1.8 g/kg → 126 g = 504 kcal</li>
+      <li><strong>Fat</strong>: 0.7 g/kg → 49 g = 441 kcal</li>
+      <li><strong>Carb</strong>: 2500 − (504 + 441) = 1555 kcal → 389 g</li>
+    </ol>
+    <p><strong>Kết quả:</strong> <code>P 126 g / C 389 g / F 49 g</code> (~2500 kcal)</p>
+
+    <h2 id="thuc-don">6) Gợi ý thực phẩm &amp; mẹo bữa ăn</h2>
+    <figure class="section-illustration">
+      <img src="/HTML/assets/schedule/schedule-10.png"
+           alt="Gợi ý thực phẩm & mẹo bữa ăn"
+           loading="lazy" decoding="async" width="1200" height="630">
+    </figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Protein</strong>: ức gà, cá hồi/cá ngừ, lòng trắng trứng, sữa chua Hy Lạp, đậu hũ.</li>
+      <li><strong>Carb</strong>: gạo/bún mì nguyên cám, khoai, yến mạch, trái cây, rau củ.</li>
+      <li><strong>Fat</strong>: hạnh nhân/óc chó, bơ, dầu olive, cá béo.</li>
+      <li><strong>Mẹo</strong>: meal prep 2–3 ngày; dùng cân thực phẩm; ưu tiên thực phẩm ít chế biến.</li>
+    </ul>
+
+    <h2 id="loi">7) Lỗi thường gặp &amp; cách khắc phục</h2>
+    <ul class="list-disc pl-5">
+      <li><strong>Thiếu đạm</strong> → đói nhanh, mất cơ khi cut → đặt P trước, chia đều 3–4 bữa.</li>
+      <li><strong>Fat quá thấp</strong> lâu ngày → ảnh hưởng hormon → tối thiểu ~0.6 g/kg.</li>
+      <li><strong>Chọn carb kém chất lượng</strong> → dao động đường huyết → ưu tiên carb chậm.</li>
+      <li><strong>Không theo dõi</strong> → khó điều chỉnh → cân đo 1–2 tuần đầu, sau đó ước lượng dần.</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./cach-tinh-tdee.html">Cách tính TDEE &amp; chọn mức calo</a></li>
+        <li><a href="./thuc-don-giam-mo-7-ngay.html">Thực đơn giảm mỡ 7 ngày (2100 kcal)</a></li>
+<li><a href="./protein-bao-nhieu-la-du.html">Bao nhiêu protein là đủ mỗi ngày?</a></li>
+        <li><a href="./giam-mo-khong-mat-co.html">Giảm mỡ thông minh: thâm hụt nhưng không mất cơ</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để tự tính macro và theo dõi mỗi ngày.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+  © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+</footer>
+
+<script src="../../TDEEJS/ga-events.js"></script>
+</body>
+</html>

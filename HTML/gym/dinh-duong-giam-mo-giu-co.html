@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinh dưỡng khi giảm mỡ nhưng giữ cơ | TDEE Planner</title>
+  <meta name="description" content="Hướng dẫn chế độ ăn giảm mỡ nhưng không mất cơ. Tập trung vào protein, cân bằng macro, điều chỉnh calo và kết hợp tập luyện hợp lý. Có ví dụ thực đơn.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/dinh-duong-giam-mo-giu-co.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Dinh Dưỡng khi Giảm Mỡ nhưng Giữ Cơ Như Nào?">
+<meta property="og:description" content="Dinh Dưỡng khi Giảm Mỡ nhưng Giữ Cơ Như Nào?, ăn như nào để giữ cơ khi giảm mỡ, cutting tăng cơ giảm mỡ,giảm cân giảm mỡ hiệu quả.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/dinh-duong-giam-mo-giu-co.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Dinh Dưỡng khi Giảm Mỡ nhưng Giữ Cơ Như Nào?",
+  "description": "Dinh Dưỡng khi Giảm Mỡ nhưng Giữ Cơ Như Nào?, ăn như nào để giữ cơ khi giảm mỡ, cutting tăng cơ giảm mỡ,giảm cân giảm mỡ hiệu quả.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/nutrition/nutrition-1.jpg"]
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/dinh-duong-giam-mo-giu-co.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Dinh Dưỡng khi Giảm Mỡ nhưng Giữ Cơ Như Nào? ", "item": "https://tdeeplan.com/HTML/gym/dinh-duong-giam-mo-giu-co.html " }
+  ]
+}
+</script>
+
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Dinh Dưỡng khi Giảm Mỡ nhưng Giữ Cơ Như Nào?</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/nutrition/nutrition-1.jpg" alt="Thực đơn giảm mỡ giữ cơ" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Bài viết chỉ nhằm mục đích giáo dục. Kết quả có thể khác nhau tùy thể trạng và mức độ vận động của từng người.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#nguyen-tac">1. Nguyên tắc cốt lõi</a></li>
+        <li><a href="#protein">2. Ưu tiên protein</a></li>
+        <li><a href="#macro">3. Cân bằng macro (P–C–F)</a></li>
+        <li><a href="#calo">4. Điều chỉnh calo thông minh</a></li>
+        <li><a href="#thuc-pham">5. Thực phẩm nên ăn &amp; tránh</a></li>
+        <li><a href="#thuc-don">6. Ví dụ thực đơn giảm mỡ giữ cơ</a></li>
+        <li><a href="#loi">7. Sai lầm thường gặp</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="nguyen-tac">1) Nguyên tắc cốt lõi</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/schedule/schedule-16.jpg" alt="1) Nguyên tắc cốt lõi" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Giảm mỡ nhưng giữ cơ nghĩa là bạn phải tạo <strong>thâm hụt calo hợp lý</strong> đồng thời duy trì đủ protein và tập luyện kháng lực. Nếu chỉ giảm calo mà thiếu đạm hoặc không tập tạ, cơ thể sẽ mất cả mỡ lẫn cơ, làm giảm trao đổi chất và ngoại hình kém săn chắc.</p>
+
+    <h2 id="protein">2) Ưu tiên protein</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/nutrition/nutrition-2.jpg" alt="Nguồn protein nạc: gà, cá, trứng, đậu" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Protein nạc giúp giữ cơ khi giảm mỡ</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>1.6 – 2.2 g/kg cân nặng/ngày</strong></li>
+      <li>Nguồn đạm nạc: ức gà, cá, tôm, lòng trắng trứng, whey protein</li>
+      <li>Đạm thực vật: đậu phụ, tempeh, đậu lăng, hạt quinoa</li>
+    </ul>
+
+    <h2 id="macro">3) Cân bằng macro (P–C–F)</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/nutrition/nutrition-10.jpg" alt="Cân bằng protein, carb, fat" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Cân bằng 3 nhóm chất chính để duy trì hiệu quả</figcaption>
+    </figure>
+    <p>Sau khi xác định lượng protein, bạn cần chia carb và fat hợp lý:</p>
+    <ul class="list-disc pl-5">
+      <li><strong>Fat:</strong> 0.6 – 1.0 g/kg (ưu tiên chất béo tốt: olive, cá béo, hạt)</li>
+      <li><strong>Carb:</strong> lấy calo còn lại → tập trung vào tinh bột chậm (gạo lứt, yến mạch, khoai)</li>
+    </ul>
+
+    <h2 id="calo">4) Điều chỉnh calo thông minh</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/nutrition/nutrition-6.jpg" alt="4) Điều chỉnh calo thông minh" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Không nên cắt quá sâu. Mức thâm hụt hợp lý: <strong>300–500 kcal/ngày</strong> so với TDEE. Nếu ăn thấp hơn BMR, cơ thể sẽ mất cơ và mệt mỏi.</p>
+    <p>Có thể áp dụng <em>Refeed day</em> (1 ngày ăn bằng TDEE, tăng carb) mỗi 1–2 tuần để hỗ trợ tâm lý và hormone.</p>
+
+    <h2 id="thuc-pham">5) Thực phẩm nên ăn &amp; tránh</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/nutrition/nutrition-7.jpg" alt="5) Thực phẩm nên ăn &amp; tránh" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li><strong>Nên ăn:</strong> thịt nạc, cá, trứng, rau xanh, trái cây ít ngọt, ngũ cốc nguyên cám, khoai</li>
+      <li><strong>Nên tránh:</strong> đồ chiên rán nhiều dầu, nước ngọt, bánh kẹo công nghiệp, rượu bia</li>
+    </ul>
+
+    <h2 id="thuc-don">6) Ví dụ thực đơn giảm mỡ giữ cơ (~2100 kcal)</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/nutrition/nutrition-11.jpg" alt="Bữa ăn giảm mỡ cân bằng" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Thực đơn giảm mỡ mẫu</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Bữa sáng:</strong> 2 lát bánh mì đen + 2 quả trứng + 1 quả chuối</li>
+      <li><strong>Bữa trưa:</strong> 150g ức gà nướng + 200g cơm gạo lứt + rau luộc</li>
+      <li><strong>Bữa phụ:</strong> whey protein + 1 quả táo</li>
+      <li><strong>Bữa tối:</strong> 150g cá hồi + khoai lang + salad dầu olive</li>
+      <li><strong>Snack:</strong> 20g hạt hạnh nhân</li>
+    </ul>
+
+    <h2 id="loi">7) Sai lầm thường gặp</h2>
+    <ul class="list-disc pl-5">
+      <li><strong>Cắt calo quá sâu:</strong> dễ mất cơ, giảm trao đổi chất</li>
+      <li><strong>Thiếu protein:</strong> giảm cân nhanh nhưng mất cơ</li>
+      <li><strong>Bỏ tập tạ:</strong> chỉ cardio khiến cơ teo nhỏ</li>
+      <li><strong>Không kiên nhẫn:</strong> giảm mỡ an toàn là 0.5–1% cân nặng/tuần</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./lich-tap-3-4-5-buoi.html">Lịch tập 3–4–5 buổi/tuần</a></li>
+        <li><a href="./macro-cho-nguoi-moi.html">Macro là gì? Cách chia Protein–Carb–Fat</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để tính calo và theo dõi macro khi giảm mỡ.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

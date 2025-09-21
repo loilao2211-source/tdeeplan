@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kỹ thuật hít thở và form chuẩn trong tập luyện | TDEE Planner</title>
+  <meta name="description" content="Hướng dẫn kỹ thuật hít thở và giữ form chuẩn khi tập gym. Giúp tăng hiệu quả, an toàn và hạn chế chấn thương. Có ví dụ minh họa squat, deadlift, bench press.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/ky-thuat-hit-tho-form-chuan.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Kỹ Thuật Hít Thở và Form chuẩn trong Tập Luyện">
+<meta property="og:description" content="Hít thở như nào trong tập Gym,  Form chuẩn trong các bài compound, lỗi thường gặp khi tập Gym, Form tập chuẩn.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/ky-thuat-hit-tho-form-chuan.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/strength/strength-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kỹ Thuật Hít Thở và Form chuẩn trong Tập Luyện",
+  "description": "Hít thở như nào trong tập Gym,  Form chuẩn trong các bài compound, lỗi thường gặp khi tập Gym, Form tập chuẩn.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/strength/strength-1.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/ky-thuat-hit-tho-form-chuan.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Kỹ Thuật Hít Thở và Form chuẩn trong Tập Luyện", "item": "https://tdeeplan.com/HTML/gym/ky-thuat-hit-tho-form-chuan.html" }
+  ]
+}
+</script>
+</head>
+<body class="bg-slate-50">
+  <div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Kỹ Thuật Hít Thở và Form chuẩn trong Tập Luyện</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/strength/strength-1.jpg" alt="Hít thở và bracing đúng khi nâng tạ" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Giữ nhịp thở đúng và form chuẩn giúp tăng hiệu suất, bảo vệ khớp và hạn chế chấn thương khi tập gym.
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#vi-sao">1. Vì sao hít thở và form quan trọng?</a></li>
+        <li><a href="#nguyen-tac-hit-tho">2. Nguyên tắc hít thở khi tập</a></li>
+        <li><a href="#ky-thuat-hit-tho">3. Các kỹ thuật hít thở cơ bản</a></li>
+        <li><a href="#form">4. Form chuẩn trong các bài compound</a></li>
+        <li><a href="#loi">5. Lỗi thường gặp</a></li>
+        <li><a href="#meo">6. Mẹo cải thiện form và hít thở</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="vi-sao">1) Vì sao hít thở và form quan trọng?</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/strength/strength-4.jpg" alt="1) Vì sao hít thở và form quan trọng?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p>Nhiều người mới tập chỉ chú ý nâng nặng, mà quên mất hít thở và form. Thực tế, hít thở sai hoặc form sai có thể dẫn đến chấn thương cột sống, đầu gối, vai. Ngược lại, thở đúng giúp ổn định core, form chuẩn giúp cơ bắp hoạt động tối đa và an toàn.</p>
+
+    <h2 id="nguyen-tac-hit-tho">2) Nguyên tắc hít thở khi tập</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/generic/generic-5.jpg" alt="Kỹ thuật hít thở khi tập luyện" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Hít sâu, thở có kiểm soát trong mỗi rep</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li><strong>Nguyên tắc chung:</strong> Hít vào khi hạ tạ, thở ra khi đẩy tạ</li>
+      <li><strong>Thở bụng (diaphragmatic breathing):</strong> giúp siết core tốt hơn</li>
+      <li><strong>Không nín thở quá lâu:</strong> dễ gây tăng huyết áp, chóng mặt</li>
+    </ul>
+
+    <h2 id="ky-thuat-hit-tho">3) Các kỹ thuật hít thở cơ bản</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-7.jpg" alt="3) Các kỹ thuật hít thở cơ bản" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p><strong>Valsalva Maneuver:</strong> hít sâu, giữ hơi khi gồng core trong rep nặng (squat, deadlift), sau đó thở ra có kiểm soát. Hữu ích cho mức tạ nặng nhưng không nên lạm dụng với người có bệnh tim mạch.</p>
+    <p><strong>Breathing Ladder:</strong> áp dụng cho bài cardio nặng (burpees, swing), phối hợp nhịp thở và rep để tránh hụt hơi.</p>
+
+    <h2 id="form">4) Form chuẩn trong các bài compound</h2>
+
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-3.jpg" alt="Form squat chuẩn" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Squat với lưng thẳng, gồng core chuyển động ổn định</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+    <h3>Squat</h3>
+      <li>Lưng thẳng, core siết</li>
+      <li>Ngực mở, mắt nhìn thẳng</li>
+      <li>Xuống đến khi đùi song song sàn</li>
+    </ul>
+
+    <h3>Deadlift</h3>
+    <figure class="my-6">
+      <img src="/HTML/assets/strength/strength-12.jpg" alt="Form deadlift chuẩn" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Deadlift với hông thấp, lưng thẳng, tạ sát người</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Chân rộng bằng vai, thanh tạ sát ống chân</li>
+      <li>Siết core, giữ cột sống trung lập</li>
+      <li>Kéo tạ sát người, đứng thẳng, siết mông trên cùng</li>
+    </ul>
+
+    <h3>Bench Press</h3>
+    <ul class="list-disc pl-5">
+      <li>Chân đặt chắc trên sàn</li>
+      <li>Thanh tạ hạ xuống ngang ngực giữa</li>
+      <li>Khuỷu tay 75–90°, không xoè quá rộng</li>
+    </ul>
+
+    <h2 id="loi">5) Lỗi thường gặp</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-8.jpg" alt="5) Lỗi thường gặp" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Squat: gù lưng, đầu gối xụp vào</li>
+      <li>Deadlift: lưng cong, giật tạ</li>
+      <li>Bench Press: cong lưng quá mức, mông rời ghế</li>
+      <li>Thở sai: nín thở toàn rep hoặc thở gấp</li>
+    </ul>
+
+    <h2 id="meo">6) Mẹo cải thiện form và hít thở</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/equipment/equipment-4.jpg" alt="6) Mẹo cải thiện form và hít thở" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Quay video buổi tập để tự sửa form</li>
+      <li>Bắt đầu với tạ nhẹ, ưu tiên kỹ thuật trước</li>
+      <li>Tập core (plank, dead bug) để hỗ trợ form</li>
+      <li>Tập thở bụng ngay cả khi nghỉ ngơi để quen</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./ky-thuat-compound.html">Kỹ thuật compound cơ bản</a></li>
+        <li><a href="./cardio-va-ta.html">Phân biệt tập Cardio và tập Tạ</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để kết hợp tập luyện đúng kỹ thuật với dinh dưỡng khoa học.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="vi"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tập buổi sáng hay buổi tối tốt hơn? | TDEE Planner</title>
+  <meta name="description" content="Nên tập gym buổi sáng hay buổi tối? So sánh ưu nhược điểm của cả hai, gợi ý cách chọn thời điểm tập phù hợp với mục tiêu và lối sống của bạn.">
+  <link rel="canonical" href="https://tdeeplan.com/HTML/gym/tap-sang-hay-toi.html">
+  <link rel="stylesheet" href="../../main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="Tập Buổi Sáng hay Buổi Tối tốt hơn?">
+<meta property="og:description" content="Các yếu tố ảnh hưởng đến thời điểm tập, Lợi ích tập buổi sáng, Lợi ích tập buổi tối, So sánh tập sáng và tối, Nên chọn tập lúc nào?, Mẹo duy trì thói quen tập luyện.">
+<meta property="og:url" content="https://tdeeplan.com/HTML/gym/tap-sang-hay-toi.html">
+<meta property="og:image" content="https://tdeeplan.com/HTML/assets/generic/generic-15.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tập Buổi Sáng hay Buổi Tối tốt hơn?",
+  "description": "Các yếu tố ảnh hưởng đến thời điểm tập, Lợi ích tập buổi sáng, Lợi ích tập buổi tối, So sánh tập sáng và tối, Nên chọn tập lúc nào?, Mẹo duy trì thói quen tập luyện.",
+  "author": { "@type": "Person", "name": "TDEE Planner" },
+  "publisher": { "@type": "Organization", "name": "TDEEPlan" },
+  "datePublished": "2025-09-19",
+  "dateModified": "2025-09-19",
+  "image": ["https://tdeeplan.com/HTML/assets/generic/generic-15.jpg"],
+  "mainEntityOfPage": "https://tdeeplan.com/HTML/gym/tap-sang-hay-toi.html",
+  "inLanguage": "vi"
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://tdeeplan.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tdeeplan.com/HTML/blog.html" },
+    { "@type": "ListItem", "position": 3, "name": "Tập Buổi Sáng hay Buổi Tối tốt hơn?", "item": "https://tdeeplan.com/HTML/gym/tap-sang-hay-toi.html" }
+  ]
+}
+</script>
+</head>
+<body class="bg-slate-50">
+<div class="fixed left-3 top-3 z-50">
+  <!-- Nút -->
+  <button id="menuBtn"
+          aria-label="Mở menu"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/90 shadow-lg ring-1 ring-black/10 backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div id="menuPanel"
+       class="hidden mt-2 w-60 rounded-2xl bg-white shadow-xl ring-1 ring-black/10 p-3">
+    <div class="px-2 pb-2 text-slate-900 font-semibold">Menu</div>
+
+    <!-- BLOG -->
+    <a id="linkBlog" href="../blog.html"
+       class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>📝</span>
+      <span class="font-medium">Blog</span>
+    </a>
+
+    <!-- HOME -->
+    <a id="linkHome" href="../index.html"
+       class="mt-2 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100 transition">
+      <span>⏪</span>
+      <span class="font-medium">Về trang chính</span>
+    </a>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div id="menuBackdrop" class="hidden fixed inset-0 z-40 bg-black/20"></div>
+<script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('menuPanel');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    function openMenu() {
+      panel.classList.remove('hidden');
+      backdrop.classList.remove('hidden');
+      // ngăn scroll nền nếu muốn:
+      // document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+      panel.classList.add('hidden');
+      backdrop.classList.add('hidden');
+      // document.body.classList.remove('overflow-hidden');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !panel.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+    // click ngoài panel để đóng
+    document.addEventListener('click', (e) => {
+      if (!panel.classList.contains('hidden')) {
+        const within = panel.contains(e.target) || btn.contains(e.target);
+        if (!within) closeMenu();
+      }
+    });
+    // Esc để đóng
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm prose lg:prose-lg">
+    <h1 class="text-3xl font-bold mb-4">Tập Buổi Sáng hay Buổi Tối tốt hơn?</h1>
+<figure class="post-hero">
+  <img src="/HTML/assets/generic/generic-15.jpg" alt="Tập sáng vs tối" width="1200" height="630" loading="lazy" decoding="async">
+</figure>
+
+
+    <aside class="p-4 rounded-xl bg-amber-50 border mb-6 text-sm">
+      Thời điểm tập luyện ảnh hưởng đến năng lượng, hiệu suất và khả năng duy trì thói quen. Vậy tập buổi sáng hay buổi tối là tối ưu?
+    </aside>
+
+    <!-- Mục lục -->
+    <nav class="mb-6 text-sm">
+      <p class="font-semibold mb-2">Mục lục</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li><a href="#yeu-to">1. Các yếu tố ảnh hưởng đến thời điểm tập</a></li>
+        <li><a href="#loi-ich-sang">2. Lợi ích tập buổi sáng</a></li>
+        <li><a href="#loi-ich-toi">3. Lợi ích tập buổi tối</a></li>
+        <li><a href="#so-sanh">4. So sánh tập sáng và tối</a></li>
+        <li><a href="#chon">5. Nên chọn tập lúc nào?</a></li>
+        <li><a href="#meo">6. Mẹo duy trì thói quen tập luyện</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="yeu-to">1) Các yếu tố ảnh hưởng đến thời điểm tập</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-13.jpg" alt="1) Các yếu tố ảnh hưởng đến thời điểm tập" loading="lazy" decoding="async" width="1200" height="630">
+  <figcaption class="text-xs text-gray-500 mt-2">Thời điểm tập phụ thuộc lịch sinh hoạt và nhịp sinh học</figcaption>
+</figure>
+
+    
+    <ul class="list-disc pl-5">
+      <li><strong>Nhịp sinh học (Chronotype):</strong> người "morning person" thường hợp tập sáng, "night owl" hợp tập tối</li>
+      <li><strong>Lịch công việc – học tập:</strong> thời gian rảnh quyết định thói quen</li>
+      <li><strong>Mục tiêu tập:</strong> giảm mỡ, tăng cơ, hay cải thiện sức khỏe</li>
+      <li><strong>Chất lượng giấc ngủ:</strong> tập muộn sát giờ ngủ có thể ảnh hưởng đến giấc ngủ</li>
+    </ul>
+
+    <h2 id="loi-ich-sang">2) Lợi ích tập buổi sáng</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/generic/generic-2.jpg" alt="Người tập gym buổi sáng ngoài trời" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Tập sáng mang lại sự tỉnh táo và năng lượng đầu ngày</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Tăng năng lượng, tỉnh táo cả ngày</li>
+      <li>Dễ hình thành thói quen vì ít bị gián đoạn</li>
+      <li>Hỗ trợ giảm mỡ do tập khi bụng rỗng (fasted cardio)</li>
+      <li>Cải thiện tâm trạng, giảm stress</li>
+    </ul>
+
+    <h2 id="loi-ich-toi">3) Lợi ích tập buổi tối</h2>
+
+
+    <figure class="my-6">
+      <img src="/HTML/assets/cardio/cardio-5.jpg" alt="Người tập gym buổi tối trong phòng tập" loading="lazy" width="1280" height="720" class="rounded-xl w-full h-auto">
+      <figcaption class="text-xs text-gray-500 mt-2">Tập tối thích hợp cho người bận rộn ban ngày</figcaption>
+    </figure>
+    <ul class="list-disc pl-5">
+      <li>Cơ thể đạt sức mạnh &amp; dẻo dai cao nhất vào cuối ngày</li>
+      <li>Dễ ăn uống đầy đủ trước tập → hiệu suất tốt hơn</li>
+      <li>Là cách xả stress sau giờ làm việc</li>
+      <li>Phù hợp người không dậy sớm được</li>
+    </ul>
+
+    <h2 id="so-sanh">4) So sánh tập sáng và tối</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/cardio/cardio-1.jpg" alt="4) So sánh tập sáng và tối" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <table class="table-auto border-collapse border border-gray-300 text-sm my-6">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border px-3 py-2">Tiêu chí</th>
+          <th class="border px-3 py-2">Buổi sáng</th>
+          <th class="border px-3 py-2">Buổi tối</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border px-3 py-2">Năng lượng</td>
+          <td class="border px-3 py-2">Giúp tỉnh táo cả ngày</td>
+          <td class="border px-3 py-2">Có sức mạnh cao hơn</td>
+        </tr>
+        <tr>
+          <td class="border px-3 py-2">Thói quen</td>
+          <td class="border px-3 py-2">Dễ duy trì, ít gián đoạn</td>
+          <td class="border px-3 py-2">Dễ bị ảnh hưởng bởi công việc, tiệc tùng</td>
+        </tr>
+        <tr>
+          <td class="border px-3 py-2">Giảm mỡ</td>
+          <td class="border px-3 py-2">Có thể fasted cardio</td>
+          <td class="border px-3 py-2">Hiệu suất cao, đốt calo nhiều</td>
+        </tr>
+        <tr>
+          <td class="border px-3 py-2">Ngủ nghỉ</td>
+          <td class="border px-3 py-2">Cải thiện giấc ngủ</td>
+          <td class="border px-3 py-2">Nếu tập sát giờ ngủ → khó ngủ</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="chon">5) Nên chọn tập lúc nào?</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-5.jpg" alt="5) Nên chọn tập lúc nào?" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <p><strong>Câu trả lời:</strong> Tập lúc nào bạn có thể duy trì lâu dài. Sáng hay tối đều tốt, miễn là bạn ăn uống đủ chất và ngủ đủ. Nếu bận rộn → chọn sáng; nếu muốn hiệu suất tối đa → chọn tối.</p>
+
+    <h2 id="meo">6) Mẹo duy trì thói quen tập luyện</h2>
+<figure class="section-illustration">
+  <img src="/HTML/assets/generic/generic-6.jpg" alt="6) Mẹo duy trì thói quen tập luyện" loading="lazy" decoding="async" width="1200" height="630">
+</figure>
+
+    <ul class="list-disc pl-5">
+      <li>Lên lịch tập cố định như một “cuộc hẹn”</li>
+      <li>Chuẩn bị đồ tập từ hôm trước</li>
+      <li>Nếu tập sáng → ngủ sớm hơn</li>
+      <li>Nếu tập tối → tránh ăn quá no trước tập</li>
+      <li>Luôn khởi động và giãn cơ để tránh chấn thương</li>
+    </ul>
+
+    <div class="mt-8 p-4 bg-slate-50 rounded-xl">
+      <p class="font-medium">Đọc tiếp:</p>
+      <ul class="list-disc list-inside">
+        <li><a href="./nguoi-moi-nen-tap-bao-nhieu-buoi.html">Người mới tập nên tập bao nhiêu buổi/tuần?</a></li>
+        <li><a href="./phuc-hoi-nghi-ngoi.html">Nghỉ ngơi &amp; phục hồi trong tập luyện</a></li>
+      </ul>
+    </div>
+
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl border">
+      <p class="font-semibold">Dùng app TDEE để chọn lịch tập phù hợp và theo dõi tiến bộ.</p>
+      <a href="../index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Mở app TDEE</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-8">
+    © 2025 TDEE Planner • <a class="underline" href="../privacy.html">Privacy</a> • <a class="underline" href="../contact.html">Contact</a>
+  </footer>
+
+  <script src="../../TDEEJS/ga-events.js"></script>
+
+
+</body></html>
