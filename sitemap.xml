@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Trang chủ + trang danh mục -->
   <url>
     <loc>https://tdeeplan.com/</loc>
-    <lastmod>2025-09-16T08:00:00+07:00</lastmod>
-    <priority>1.00</priority>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tdeeplan.com/blog</loc>
-    <lastmod>2025-09-16T08:00:00+07:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://tdeeplan.com/HTML/blog.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://tdeeplan.com/vip</loc>
-    <lastmod>2025-09-16T08:00:00+07:00</lastmod>
-    <priority>0.64</priority>
-  </url>
-  <url>
-    <loc>https://tdeeplan.com/privacy</loc>
-    <lastmod>2025-09-16T08:00:00+07:00</lastmod>
-    <priority>0.64</priority>
-  </url>
-  <url>
-    <loc>https://tdeeplan.com/terms</loc>
-    <lastmod>2025-09-16T08:00:00+07:00</lastmod>
-    <priority>0.64</priority>
-  </url>
-  <url>
-    <loc>https://tdeeplan.com/gym/gym.html</loc>
-    <lastmod>2025-09-16T08:00:00+07:00</lastmod>
-    <priority>0.64</priority>
-  </url>
-  <url>
-    <loc>https://tdeeplan.com/gym/gym1.html</loc>
-    <lastmod>2025-09-16T08:00:00+07:00</lastmod>
-    <priority>0.64</priority>
-  </url>
+
+  <!-- Các trang tĩnh khác (nếu muốn index) -->
+  <url><loc>https://tdeeplan.com/HTML/privacy.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/contact.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/terms.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/vip.html</loc></url>
+
+  <!-- 24 bài trong /HTML/gym/ -->
+  <url><loc>https://tdeeplan.com/HTML/gym/loi-ich-tap-gym.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/macro-cho-nguoi-moi.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/cach-tinh-tdee.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/an-truoc-trong-sau-buoi-tap.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/phuc-hoi-nghi-ngoi.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/ky-thuat-compound.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/lich-tap-3-4-5-buoi.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/dinh-duong-giam-mo.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/supplement-cho-gym.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/cardio-va-ta.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/cardio-vs-weight-training.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/crossfit-vs-gym.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/ky-thuat-hit-tho-form-chuan.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/progressive-overload.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/chan-thuong-khi-tap-gym.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/ky-thuat-tap-core.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/giac-ngu-stress-hormone.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/tap-gym-khi-bi-doms.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/tap-sang-hay-toi.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/nguoi-moi-nen-tap-bao-nhieu-buoi.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/nu-tap-ta-co-bi-to-khong.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/tap-gym-co-lam-lun.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/powerlifting-vs-bodybuilding.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/an-chay-co-tang-co-duoc-khong.html</loc></url>
+  <url><loc>https://tdeeplan.com/HTML/gym/whey-protein-co-can-thiet-khong.html</loc></url>
 </urlset>
