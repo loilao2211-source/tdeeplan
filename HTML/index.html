@@ -11,7 +11,31 @@
 </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>TDEE, Meal & Workout Planner Pro</title>
+  <title>TDEEPlan — Tính TDEE, macro & lập kế hoạch ăn–tập</title>
+<meta name="description" content="TDEEPlan giúp bạn tính TDEE, chia macro chính xác và gợi ý meal/workout plan nhanh. Dễ dùng, phù hợp người mới lẫn tập lâu năm.">
+
+<link rel="canonical" href="https://tdeeplan.com/">
+
+<meta property="og:site_name" content="TDEEPlan">
+<meta property="og:title" content="TDEEPlan — Tính TDEE, macro & lập kế hoạch ăn–tập">
+<meta property="og:description" content="Tính TDEE, macro và tạo plan ăn–tập trong 1 phút.">
+<meta property="og:url" content="https://tdeeplan.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon-512.png" sizes="512x512">
+
+<!-- Organization JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"TDEEPlan",
+  "url":"https://tdeeplan.com/",
+  "logo":"https://tdeeplan.com/favicon-512.png",
+  "sameAs": [
+    "https://github.com/loilao2211-source/tdeeplan"
+  ]
+}
+</script>
 
   <script type="importmap">
 {
@@ -306,21 +330,31 @@ body::before {
 
 
 
-<script src="./ga-events.js"></script>
+<script src="../../TDEEJS/ga-events.js"></script>
 
 
-<script async type="application/javascript"
-        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
 <script>
-  (self.SWG_BASIC = self.SWG_BASIC || []).push(basicSubscriptions => {
-    basicSubscriptions.init({
-      type: "NewsArticle",
-      isPartOfType: ["Product"],
-      isPartOfProductId: "CAow6Za-DA:openaccess",  // ID Google cấp cho ấn phẩm của bạn
-      clientOptions: { theme: "light", lang: "vi" }
+(function () {
+  const isProd = location.hostname === 'tdeeplan.com' && location.protocol === 'https:';
+  if (!isProd) return; // bỏ qua khi chạy localhost / 127.0.0.1
+
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://news.google.com/swg/js/v1/swg-basic.js';
+  s.onload = () => {
+    (self.SWG_BASIC = self.SWG_BASIC || []).push(basicSubscriptions => {
+      basicSubscriptions.init({
+        type: "NewsArticle",
+        isPartOfType: ["Product"],
+        isPartOfProductId: "CAow6Za-DA:openaccess",
+        clientOptions: { theme: "light", lang: "vi" }
+      });
     });
-  });
+  };
+  document.head.appendChild(s);
+})();
 </script>
+
 
 
 </body>
