@@ -39,17 +39,26 @@ export const foodDB = {
   }
 };
 
-const KCAL_TOL = 2;
 
-// 👉 Ưu tiên tính kcal từ macro; chỉ dùng 'kcal' khi không có macro
-function kcalOfFood(food, g){
+
+// Dùng cùng 1 công thức kcal ở mọi nơi:
+// - Nếu food.kcal có sẵn (món đã nấu như cơm/khoai/rau) thì ưu tiên dùng
+// - Nếu không, tính từ macro (P*4 + C*4 + F*9)
+function kcalPer100(food) {
   const p = food?.protein ?? 0, c = food?.carb ?? 0, f = food?.fat ?? 0;
-  if (p || c || f) return (p*4 + c*4 + f*9) * g / 100;
-  return (food?.kcal || 0) * g / 100;
+  return (p || c || f) ? (p*4 + c*4 + f*9) : (food?.kcal || 0);
 }
+function kcalOfFood(food, g){ return kcalPer100(food) * g / 100; }
+
 function macrosOfFood(food, g){
-  return { p:(food?.protein||0)*g/100, c:(food?.carb||0)*g/100, f:(food?.fat||0)*g/100, k:kcalOfFood(food,g) };
+  return {
+    p: (food?.protein||0) * g / 100,
+    c: (food?.carb||0)    * g / 100,
+    f: (food?.fat||0)     * g / 100,
+    k: kcalOfFood(food, g)
+  };
 }
+const KCAL_TOL = 2;
 const round5 = x => Math.max(0, Math.round(x/5)*5);
 
 // ====== CẬP NHẬT: thêm exclude (món đã dùng trong ngày) & allowFatSlack ======
@@ -87,9 +96,111 @@ function pickProteinThatFits({ pMeal, fMeal, calTarget, vegK, minCarbK, baseId, 
 }
 
 
+// Xoay vòng các combo snack hiển thị (không ghi gram/kcal)
+const SNACK_COMBOS = [
+  "Sữa chua + Chuối",
+  "Táo + Hạnh nhân (vài hạt)",
+  "Sữa chua + Táo",
+  "Chuối + Óc chó (vài hạt)",
+  "Sữa chua Hy Lạp + Việt quất",
+  "Bánh mì đen + Bơ đậu phộng (mỏng)",
+  "Phô mai + Bánh gạo",
+  "Ngũ cốc không đường + Sữa tươi ít béo"
+];
+
+// Pool snack để “ước lượng” khi còn thừa kcal, nhưng CHỈ để tính chọn – không hiển thị gram
+const SNACK_POOL = [
+  { key: "banana", label: "Chuối",        kcal100: 96  },
+  { key: "apple",  label: "Táo",          kcal100: 52  },
+  { key: "yogurt", label: "Sữa chua",     kcal100: 73  },
+  { key: "almond", label: "Hạnh nhân",    kcal100: 579 },
+  { key: "walnut", label: "Óc chó",       kcal100: 654 },
+];
+
+// 1 khẩu phần ước lượng (để quyết định chọn cái nào khi còn thiếu kcal)
+const SNACK_PORTION_KCAL = {
+  banana: 100,   // ~1 quả nhỏ
+  apple:  80,    // ~1 quả vừa
+  yogurt: 73,    // 1 hộp 100g
+  almond: 90,    // ~15g (vài hạt)
+  walnut: 95     // ~15g (vài hạt)
+};
+// Map tên -> key dùng trong SNACK_PORTION_KCAL
+const NAME_TO_KEY = {
+  "Chuối": "banana",
+  "Táo": "apple",
+  "Sữa chua": "yogurt",
+  "Hạnh nhân": "almond",
+  "Óc chó": "walnut",
+};
+
+// Ước lượng kcal 1 label/combination dựa vào SNACK_PORTION_KCAL (nếu có)
+function comboKcal(label){
+  return label.split('+')
+    .map(s => s.trim().replace(/\s*\(.*?\)/, "")) // bỏ "(vài hạt)" nếu có
+    .map(name => NAME_TO_KEY[name] || "")
+    .reduce((sum, key) => sum + (SNACK_PORTION_KCAL[key] || 0), 0);
+}
+
+// Vòng mảng để xoay vòng theo ngày
+const rotate = (arr, n) => [...arr.slice(n % arr.length), ...arr.slice(0, n % arr.length)];
+
+// Combo gợi ý
+const PREWORKOUT_COMBOS = [
+  "Chuối + Sữa chua",
+  "Táo + Sữa chua",
+  "Chuối + Ngũ cốc",     // nếu không có kcal preset vẫn OK, chỉ là nhãn
+  "Táo + Hạnh nhân",
+];
+
+const RESTDAY_COMBOS = [
+  "Sữa chua",
+  "Táo",
+  "Chuối",
+  "Hạnh nhân (vài hạt)",
+  "Óc chó (vài hạt)",
+  "Sữa chua + Táo",
+  "Táo + Hạnh nhân",
+];
 
 
-function buildMealPlanCore({ macrosInput, mealCount = 3, mode = "free", picks = null }) {
+// ✅ HÀM MỚI: có isTrainingDay
+function pickSnackLabel(dayIdx, kcalRemain = 0, isTrainingDay = null) {
+  // Chọn pool theo ngày tập/nghỉ
+  const basePool =
+    isTrainingDay === true  ? PREWORKOUT_COMBOS :
+    isTrainingDay === false ? RESTDAY_COMBOS   :
+                               SNACK_COMBOS;
+
+  // Không để "Chuối + Chuối"
+  const noDup = s => !/\bChuối\b.*\bChuối\b/i.test(s);
+
+  // Xoay vòng theo ngày để đỡ lặp
+  let rot = rotate(basePool, dayIdx).filter(noDup);
+
+  // Nếu còn rất ít kcal → ưu tiên combo nhẹ (1 món)
+  if (kcalRemain <= 40) {
+    const light = rot.find(s => s.indexOf('+') === -1) || rot[0];
+    return light;
+  }
+
+  // Nếu đã có bảng kcal khẩu phần, cố gắng fit dưới kcalRemain
+  const fit = rot.find(s => comboKcal(s) <= kcalRemain);
+  if (fit) return fit;
+
+  // Không có ước lượng kcal → trả item đầu theo xoay vòng
+  return rot[0] || "Sữa chua";
+}
+
+
+
+function buildMealPlanCore({
+  macrosInput,
+  mealCount = 3,
+  mode = "free",
+  picks = null,
+  trainFlags = null // ⬅️ mảng 7 phần tử: true = ngày tập, false = ngày nghỉ
+}) {
   const macrosArr = Array.isArray(macrosInput) ? macrosInput : Array(7).fill(macrosInput);
 
   const defCarb = ["rice","brownRice","sweetPotato"];
@@ -179,7 +290,7 @@ function buildMealPlanCore({ macrosInput, mealCount = 3, mode = "free", picks = 
       // đẩy carb gần mục tiêu
       const cGoalG = Math.round((cMeal / carbPer100) * 100);
       if (kcalLeft > 0 && carbG < cGoalG) {
-        const kPer1gFood = (carbFood.kcal != null) ? (carbFood.kcal/100) : (4 * (carbPer100/100));
+        const kPer1gFood = Math.max(0.1, kcalPer100(carbFood) / 100);
         const add = Math.floor(Math.min(kcalLeft / Math.max(0.1,kPer1gFood), cGoalG - carbG));
         carbG += Math.max(0, add);
         carb = macrosOfFood(carbFood, carbG);
@@ -190,7 +301,7 @@ function buildMealPlanCore({ macrosInput, mealCount = 3, mode = "free", picks = 
       let kcalMeal = veg.k + pf.k + carb.k + oilFatG*9;
       let diff = Math.round(calTarget - kcalMeal);
       if (Math.abs(diff) > KCAL_TOL) {
-        const kPer1gFood = (carbFood.kcal != null) ? (carbFood.kcal/100) : (4 * (carbPer100/100));
+        const kPer1gFood = Math.max(0.1, kcalPer100(carbFood) / 100);
         if (diff > 0) {
           const add = Math.floor(diff / Math.max(0.1, kPer1gFood));
           carbG += Math.max(0, add);
@@ -201,6 +312,20 @@ function buildMealPlanCore({ macrosInput, mealCount = 3, mode = "free", picks = 
         carb = macrosOfFood(carbFood, carbG);
         kcalMeal = veg.k + pf.k + carb.k + oilFatG*9;
       }
+
+      /* ========= (2) CHỐT Ở BỮA CUỐI: đảm bảo tổng ngày khớp kcal mục tiêu (±2) ========= */
+      if (b === mealCount) {
+        const kcalTargetDay = Math.round((m.protein||0)*4 + (m.fat||0)*9 + (m.carb||0)*4);
+        const diffDay = Math.round(kcalTargetDay - (sumK + kcalMeal)); // dương = thiếu
+        if (Math.abs(diffDay) > KCAL_TOL) {
+          const kPer1gFood = Math.max(0.1, kcalPer100(carbFood) / 100); // kcal/gram carb
+          let deltaG = Math.round(diffDay / kPer1gFood);                 // gram cần bù/giảm
+          carbG = Math.max(minCarbG, carbG + deltaG);
+          carb  = macrosOfFood(carbFood, carbG);
+          kcalMeal = veg.k + pf.k + carb.k + oilFatG*9;
+        }
+      }
+      /* ===================================================================================== */
 
       const oilTxt = oilFatG > 0 ? ` + ${(foodDB.oil?.oil?.label)||"Dầu"} ${oilFatG}g` : "";
       meals.push(
@@ -214,57 +339,50 @@ function buildMealPlanCore({ macrosInput, mealCount = 3, mode = "free", picks = 
       sumK += kcalMeal;
     }
 
-    // … phần snack bù thiếu giữ nguyên …
-    // (không cần sửa)
+    /* ===== BỮA PHỤ – ĐA DẠNG, KHÔNG GRAM/KCAL, NGÀY TẬP THÌ GHI “(ăn trước tập)” ===== */
+const isTrainDay = Array.isArray(trainFlags) ? !!trainFlags[i] : true; // fallback: coi như ngày tập
 
+// Lấy label từ DB để đồng nhất
+const LB = {
+  banana: foodDB.snack?.banana?.label || "Chuối",
+  yogurt: foodDB.snack?.yogurt?.label || "Sữa chua",
+  almond: foodDB.snack?.almond?.label || "Hạnh nhân",
+  walnut: foodDB.snack?.walnut?.label || "Óc chó",
+  apple:  foodDB.snack?.apple?.label  || "Táo"
+};
 
-    // ===== BỮA PHỤ (snack) – CHỈ bù thiếu, không vượt kcal mục tiêu ngày =====
-    const kcalTargetDay = Math.round(m.protein*4 + m.fat*9 + m.carb*4);
-    let kcalRemain = Math.max(0, kcalTargetDay - sumK);
+// Combo NGÀY TẬP (ăn trước tập) – luôn 2 món
+const SNACK_TRAIN = [
+  [LB.banana, LB.yogurt],
+  [LB.banana, LB.almond],
+  [LB.banana, LB.walnut],
+  [LB.yogurt, LB.apple],
+  [LB.apple,  LB.almond],
+];
 
-    let snackParts = [];
-    let snackK = 0;
+// Combo NGÀY NGHỈ – 1–2 món
+const SNACK_REST = [
+  [LB.yogurt, LB.apple],
+  [LB.apple,  LB.walnut],
+  [LB.yogurt, LB.walnut],
+  [LB.apple],          // 1 món
+  [LB.yogurt],         // 1 món
+];
 
-    // bù PROTEIN trước bằng whey
-    const missP = Math.max(0, m.protein - sumP);
-    if (missP > 5 && kcalRemain > 0 && foodDB.snack?.wheyIso) {
-      const whey = foodDB.snack.wheyIso;
-      const gForP = missP / Math.max(1e-6, whey.protein/100);
-      const gForK = kcalRemain / Math.max(1e-6, whey.kcal/100);
-      let gWhey = round5(Math.min(gForP, gForK));
-      if (gWhey > 0) {
-        const w = macrosOfFood(whey, gWhey);
-        snackParts.push(`${whey.label} ${gWhey}g`);
-        snackK     += w.k;
-        kcalRemain -= w.k;
-      }
-    }
+const pool = isTrainDay ? SNACK_TRAIN : SNACK_REST;
+const pair = pool[i % pool.length];
 
-    // bù FAT bằng hạt
-    const missF = Math.max(0, m.fat - sumF);
-    if (missF > 3 && kcalRemain > 0 && foodDB.snack?.walnut) {
-      const nut = foodDB.snack.walnut; // hoặc almond
-      const gForF = missF / Math.max(1e-6, nut.fat/100);
-      const gForK = kcalRemain / Math.max(1e-6, nut.kcal/100);
-      let gNut = round5(Math.min(gForF, gForK));
-      if (gNut > 0) {
-        const n = macrosOfFood(nut, gNut);
-        snackParts.push(`${nut.label} ${gNut}g`);
-        snackK     += n.k;
-        kcalRemain -= n.k;
-      }
-    }
+// Loại phần tử trùng (phòng khi label trùng nhau)
+const uniq = [];
+for (const x of pair) if (x && !uniq.includes(x)) uniq.push(x);
 
-    // nếu không cần bù → snack nhẹ
-    if (snackParts.length === 0) {
-      const alt = ["yogurt","banana","apple"].map(k => foodDB.snack?.[k]?.label).filter(Boolean);
-      snackParts = [ alt.length ? alt[i % alt.length] : "Sữa chua" ];
-    }
+const snackText  = uniq.join(" + ");
+const snackTitle = isTrainDay ? "Bữa phụ (ăn trước tập)" : "Bữa phụ";
 
-    plan.push(`
-      <div>${meals.join("<br>")}</div>
-      <h4 class="mt-2">Bữa phụ: ${snackParts.join(" + ")}${snackK>0 ? ` <span style="color:#6b7280">(${Math.round(snackK)} kcal)</span>`:""}</h4>
-    `);
+plan.push(`
+  <div>${meals.join("<br>")}</div>
+  <h4 class="mt-2">${snackTitle}: ${snackText}</h4>
+`);
   }
 
   return plan;
@@ -272,13 +390,15 @@ function buildMealPlanCore({ macrosInput, mealCount = 3, mode = "free", picks = 
 
 
 
+
 // ===== EXPORT API =====
-export function buildMealPlanByDay(macrosInput, mealCount = 3) {
-  return buildMealPlanCore({ macrosInput, mealCount, mode: "free" });
+export function buildMealPlanByDay(macrosInput, mealCount = 3, trainFlags = null) {
+  return buildMealPlanCore({ macrosInput, mealCount, mode: "free", picks: null, trainFlags });
 }
-export function buildMealPlanByDayVIP(macrosInput, mealCount = 3, picks = null) {
-  return buildMealPlanCore({ macrosInput, mealCount, mode: "vip", picks });
+export function buildMealPlanByDayVIP(macrosInput, mealCount = 3, picks = null, trainFlags = null) {
+  return buildMealPlanCore({ macrosInput, mealCount, mode: "vip", picks, trainFlags });
 }
+
 
 
 // ==================== EXERCISE DB + YOUTUBE ====================
