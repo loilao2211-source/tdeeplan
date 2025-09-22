@@ -49,6 +49,86 @@ async function useVIP() {
   }
   return vipMod;
 }
+
+/* ========= TDEE / Macro engine (g/kg) ========= */
+const GOAL_PRESETS = {
+  'giam-mo':            { p: 2.0, f: 0.9 },
+  'tang-co-giam-mo':    { p: 2.0, f: 0.9 },
+  'giu-can-giam-mo':    { p: 2.0, f: 0.8 },
+  'giu-can-tang-co':    { p: 1.7, f: 1.0 },
+  'tang-can-tang-co':   { p: 1.7, f: 1.1 },
+  'giam-can-tang-co':   { p: 2.3, f: 0.9 },
+};
+function pickCalories(tdee, bmr, goalKey) {
+  switch (goalKey) {
+    case 'giam-mo':
+    case 'tang-co-giam-mo':
+    case 'giam-can-tang-co': {
+      const cut500 = tdee - 500, cut300 = tdee - 300;
+      const target = (cut500 < bmr) ? cut300 : cut500;
+      return Math.max(target, bmr);
+    }
+    case 'tang-can-tang-co': return Math.round(tdee * 1.10);
+    case 'giu-can-giam-mo':
+    case 'giu-can-tang-co':
+    default: return Math.round(tdee);
+  }
+}
+function macrosFromPreset(weightKg, calories, preset) {
+  const P = Math.round(weightKg * preset.p);
+  const F = Math.round(weightKg * preset.f);
+  const kcalPF = P*4 + F*9;
+  let C = Math.round((calories - kcalPF) / 4);
+  if (C < 0) { // hạ fat tối thiểu 0.6 g/kg rồi tính lại carb
+    const fMin = Math.round(weightKg * 0.6);
+    const kcalPF2 = P*4 + fMin*9;
+    C = Math.max(0, Math.round((calories - kcalPF2) / 4));
+    return { protein: P, carbs: C, fat: fMin, calories: P*4 + C*4 + fMin*9 };
+  }
+  return { protein: P, carbs: C, fat: F, calories: P*4 + C*4 + F*9 };
+}
+function splitMeals(m, meals){
+  const even = g => Math.max(0, Math.round(g / meals));
+  const p = even(m.protein), c = even(m.carbs), f = even(m.fat);
+  const k = p*4 + c*4 + f*9;
+  return Array.from({length: meals}, () => ({ protein:p, carbs:c, fat:f, calories:k }));
+}
+function buildTargets({ weight, tdee, bmr, goalKey, meals = 3 }) {
+  const preset   = GOAL_PRESETS[goalKey] || GOAL_PRESETS['giam-mo'];
+  const calTrain = pickCalories(tdee, bmr, goalKey);
+  const train    = macrosFromPreset(weight, calTrain, preset);
+
+  const calRest  = Math.max(bmr, calTrain - 150);
+  const needDrop = Math.max(0, train.calories - calRest);
+  const dropC    = Math.round(needDrop / 4);
+  const rest     = {
+    protein: train.protein,
+    fat:     train.fat,
+    carbs:   Math.max(0, train.carbs - dropC),
+    calories: calRest
+  };
+  return {
+    train: { ...train, meals, perMeal: splitMeals(train, meals) },
+    rest:  { ...rest,  meals, perMeal: splitMeals(rest,  meals) }
+  };
+}
+function mapGoalFromUI(goal, sub) {
+  // goal: "maintain" | "lose" | "gain"; sub: "hypertrophy" | "fatloss" (mặc định 'hypertrophy')
+  const g = (goal||'').toLowerCase(), s = (sub||'').toLowerCase();
+  if (g==='gain'     && s==='hypertrophy') return 'tang-can-tang-co';
+  if (g==='lose'     && s==='hypertrophy') return 'giam-can-tang-co';
+  if (g==='lose'     && s==='fatloss')     return 'giam-mo';
+  if (g==='maintain' && s==='hypertrophy') return 'giu-can-tang-co';
+  if (g==='maintain' && s==='fatloss')     return 'giu-can-giam-mo';
+  if (g==='lose')  return 'giam-mo';
+  if (g==='gain')  return 'tang-can-tang-co';
+  if (g==='maintain') return 'giu-can-tang-co';
+  return 'giam-mo';
+}
+
+
+
+
 function hideVipUI() {
   const show = (id, v) => { const el = document.getElementById(id); if (el && el.style) el.style.display = v; };
   show("vipSupport", "none");   // ẩn icon Facebook cho đến khi có plan
@@ -153,7 +233,9 @@ onAuthStateChanged(auth, async (user) => {
     state.isVIP    = false;
 
     // UI: về form, ẩn app
-    showForm({ clearPlanner: true, clearTDEE: false, resetFields: true });
+        if (!state.__pendingCreate) {
+      showForm({ clearPlanner: true, clearTDEE: false, resetFields: true });
+    }
     hideVipUI?.();
     refreshToolbar();
     window.enterLandingMode?.();
@@ -411,22 +493,21 @@ function renderDayPlanner(data) {
   const stageSeq = STAGES[sessions] || STAGES[5];
 
   // --- Tính macro chuẩn 7 ngày theo workout gốc (giữ như cũ) ---
-const goal   = data?.profile?.goal || "maintain";
-const tr     = data?.tdeeResult || {};
-const gender = data?.profile?.gender || "male";
-
-const { train: trainingCalo, rest: restingCalo } = Core.computeTargets({
-  BMR: Number(tr.BMR || 0),
-  TDEE: Number(tr.TDEE || 0),
-  goal, gender
-});
-
+const tr = data?.tdeeResult || {};
 const macrosFix = (workoutNorm || []).map(d => {
-  const rest = !!d?.rest;
-  const calo = rest ? restingCalo : trainingCalo;
-  return calcMacros(calo, getMacroPercent(goal, rest));
+  if (d?.rest) {
+    return {
+      protein: Number(tr.RestProtein ?? tr.Protein ?? 0),
+      carb:    Number(tr.RestCarb    ?? 0),
+      fat:     Number(tr.RestFat     ?? tr.Fat ?? 0)
+    };
+  }
+  return {
+    protein: Number(tr.Protein ?? 0),
+    carb:    Number(tr.Carb    ?? 0),
+    fat:     Number(tr.Fat     ?? 0)
+  };
 });
-
 data.macrosArr = macrosFix;
 data.workout   = workoutNorm;
 
@@ -559,25 +640,40 @@ const stageTodayPlanned = stageSeq[Math.min(6, doneBeforeToday)] || '';
   try {
     // Nếu chưa có macrosArr 7 ngày thì build lại từ trainingCalo/restingCalo
     const ensureMacros7 = () => {
-      if (Array.isArray(data.macrosArr) && data.macrosArr.length === 7) return data.macrosArr;
-      const arr = (workoutNorm || []).map(day => {
-        const rest = !!day?.rest;
-        const calo = rest ? restingCalo : trainingCalo;
-        return calcMacros(calo, getMacroPercent(goal, rest));
-      });
-      data.macrosArr = arr;
-      return arr;
-    };
+  if (Array.isArray(data.macrosArr) && data.macrosArr.length === 7) return data.macrosArr;
+  const tr = data?.tdeeResult || {};
+  const arr = (workoutNorm || []).map(day => {
+    if (day?.rest) {
+      return {
+        protein: Number(tr.RestProtein ?? tr.Protein ?? 0),
+        carb:    Number(tr.RestCarb    ?? 0),
+        fat:     Number(tr.RestFat     ?? tr.Fat ?? 0)
+      };
+    }
+    return { protein: Number(tr.Protein||0), carb: Number(tr.Carb||0), fat: Number(tr.Fat||0) };
+  });
+  data.macrosArr = arr;
+  return arr;
+};
 
     if (d === todayIdx) {
       // ===== HÔM NAY: trượt theo buổi đang tới =====
       const split   = stageTodayPlanned;
       const isRest  = (!split || split === "Cardio/Core");
       const caloNow = isRest ? restingCalo : trainingCalo;
-      const macNow  = calcMacros(caloNow, getMacroPercent(goal, isRest));
+      const macNow  = isRest
+  ? { protein: Number(tr.RestProtein ?? tr.Protein ?? 0),
+      carb:    Number(tr.RestCarb    ?? 0),
+      fat:     Number(tr.RestFat     ?? tr.Fat ?? 0) }
+  : { protein: Number(tr.Protein ?? 0),
+      carb:    Number(tr.Carb    ?? 0),
+      fat:     Number(tr.Fat     ?? 0) };
+
 
       // MEAL hôm nay (build từ 1 bộ macro)
-      const plan7 = buildMealPlanByDay(macNow, count);
+      const flagsToday = Array(7).fill(!isRest);
+      const plan7 = buildMealPlanByDay(macNow, count, flagsToday);
+
       mealHtml = Array.isArray(plan7) ? (plan7[idxR] || plan7[0] || "") : "";
 
       // WORKOUT hôm nay
@@ -586,10 +682,18 @@ const stageTodayPlanned = stageSeq[Math.min(6, doneBeforeToday)] || '';
     } else if (isDone) {
       // ===== NGÀY ĐÃ TÍCH: tái dựng đúng buổi đã tập =====
       const splitDone = stageAtDay(d) || "Cardio/Core";
-      const wasRest   = (!splitDone || splitDone === "Cardio/Core");
+      const wasRest = (!splitDone || splitDone === "Cardio/Core");
       const caloDone  = wasRest ? restingCalo : trainingCalo;
-      const macDone   = calcMacros(caloDone, getMacroPercent(goal, wasRest));
-      const planDone  = buildMealPlanByDay(macDone, count);
+      const macDone = wasRest
+  ? { protein: Number(tr.RestProtein ?? tr.Protein ?? 0),
+      carb:    Number(tr.RestCarb    ?? 0),
+      fat:     Number(tr.RestFat     ?? tr.Fat ?? 0) }
+  : { protein: Number(tr.Protein ?? 0),
+      carb:    Number(tr.Carb    ?? 0),
+      fat:     Number(tr.Fat     ?? 0) };
+      const flagsDone = Array(7).fill(!wasRest);
+      const planDone = buildMealPlanByDay(macDone, count, flagsDone);
+
 
       mealHtml = Array.isArray(planDone) ? (planDone[idxR] || planDone[0] || "") : "";
       woHtml   = buildContentForSplit(dayName, splitDone);
@@ -597,7 +701,8 @@ const stageTodayPlanned = stageSeq[Math.min(6, doneBeforeToday)] || '';
     } else {
       // ===== NGÀY CHƯA TÍCH: hiển thị theo lịch gốc trong tuần =====
       const macros7 = ensureMacros7();
-      data.mealplan = buildMealPlanByDay(macros7, count);
+const trainFlags = (workoutNorm || []).map(day => !day?.rest);
+data.mealplan = buildMealPlanByDay(macros7, count, trainFlags);
       mealHtml = data.mealplan?.[idxR] || "";
 
       const woRaw = workoutNorm?.[idxR]?.content || "";
@@ -660,14 +765,14 @@ const stageTodayPlanned = stageSeq[Math.min(6, doneBeforeToday)] || '';
 
     // build lại macros nếu thiếu
     const macros7 = (Array.isArray(data.macrosArr) && data.macrosArr.length === 7)
-      ? data.macrosArr
-      : (workoutNorm || []).map(day => {
-          const rest = !!day?.rest;
-          const calo = rest ? restingCalo : trainingCalo;
-          return calcMacros(calo, getMacroPercent(goal, rest));
-        });
-
-    data.mealplan = buildMealPlanByDay(macros7, newCount);
+   ? data.macrosArr
+   : (workoutNorm || []).map(day => {
+       const rest = !!day?.rest;
+       const calo = rest ? restingCalo : trainingCalo;
+       return calcMacros(calo, getMacroPercent(goal, rest));
+     });
+ const trainFlags = (workoutNorm || []).map(day => !day?.rest); // true = ngày tập
+ data.mealplan = buildMealPlanByDay(macros7, newCount, trainFlags);
     await saveUserData(data);
     state.userData = data;
     showDay(d);
@@ -771,23 +876,23 @@ function showOnlyPlanAfterLogin(userData) {
 }
 function handleTdee() {
   const info = readForm();
-  if (!info.age || !info.height || !info.weight) {
-    alert("Vui lòng nhập Tuổi, Chiều cao, Cân nặng"); return;
-  }
+  if (!info.age || !info.height || !info.weight) { alert("Vui lòng nhập Tuổi, Chiều cao, Cân nặng"); return; }
 
   const BMR  = calculateBMR(info);
-const TDEE = BMR * getActivityFactor(info.workoutDays);
+  const TDEE = BMR * getActivityFactor(info.workoutDays);
 
-const { train: Calo, rest: CaloRest } = Core.computeTargets({
-  BMR, TDEE, goal: info.goal, gender: info.gender
-});
-const mac = calcMacros(Calo, getMacroPercent(info.goal, false));
+  const goalKey = mapGoalFromUI(info.goal, info.subGoal);
+  const plan = buildTargets({ weight: info.weight, tdee: TDEE, bmr: BMR, goalKey, meals: 3 });
 
-renderTdeeResult({
-  BMR, TDEE, Calo, CaloRest,
-  Protein: mac.protein, Carb: mac.carb, Fat: mac.fat,
-  goal: info.goal, gender: info.gender
-});
+  renderTdeeResult({
+    BMR, TDEE,
+    Calo: plan.train.calories,
+    CaloRest: plan.rest.calories,
+    Protein: plan.train.protein,
+    Carb:    plan.train.carbs,
+    Fat:     plan.train.fat,
+    goal: info.goal, gender: info.gender
+  });
 
   const planBtn = document.getElementById("btnPlan");
   if (planBtn) planBtn.style.display = "inline-block";
@@ -796,11 +901,16 @@ renderTdeeResult({
 
 
 
-
 async function handleCreatePlan(opts = {}) {
   const overwrite = !!opts.overwrite;
 
   if (!state.currentUser) await handleLogin();
+  // Lưu form hiện tại trước khi login (đề phòng onAuthStateChanged reset UI)
+  const infoBeforeLogin = readForm();
+  if (!state.currentUser) {
+    state.__pendingCreate = { info: infoBeforeLogin };
+    await handleLogin();
+  }
   if (!state.currentUser) return;
 
   const existing = await getUserData(state.currentUser);
@@ -821,60 +931,49 @@ async function handleCreatePlan(opts = {}) {
 
   // ---- build plan mới
 
-const info  = readForm();
-const bmr   = calculateBMR(info);
-const tdee  = bmr * getActivityFactor(info.workoutDays);
+const info  = (state.__pendingCreate?.info) || readForm();
+  const bmr   = calculateBMR(info);
+  const tdee  = bmr * getActivityFactor(info.workoutDays);
 
-// chỉ khi giảm mỡ mà kcal < BMR mới kích hoạt "safe mode"
-const { train: calTrain, rest: calRest } = Core.computeTargets({
-  BMR: bmr, TDEE: tdee, goal: info.goal, gender: info.gender
-});
+  const goalKey = mapGoalFromUI(info.goal, info.subGoal);
+  const plan    = buildTargets({ weight: info.weight, tdee, bmr, goalKey, meals: 3 });
 
-// lấy lịch bài tập như cũ (theo TDEE để chọn split, không ảnh hưởng safe mode)
-const { workout } = buildWorkoutAndMacroByDay(info, tdee);
+  const { workout } = buildWorkoutAndMacroByDay(info, tdee);
 
-// macrosArr theo từng ngày (rest/training)
-const macrosArr = (workout || []).map(w => {
-  const rest = !!w?.rest;
-  const calo = rest ? calRest : calTrain;
-  return calcMacros(calo, getMacroPercent(info.goal, rest));
-});
+  // helper: đổi {carbs→carb} cho data.js
+  const toM = ({ protein, carbs, fat, calories }) => ({ protein, fat, carb: carbs, calories });
 
-// meal plan dùng macrosArr
-const mealplan = buildMealPlanByDay(macrosArr, 3);
+  // 7 ngày: train/rest theo ngày nghỉ
+  const macrosArr = (workout || []).map(w => toM(w?.rest ? plan.rest : plan.train));
+  const trainFlags = (workout || []).map(w => !w?.rest);
+  // meal plan từ macro/ngày
+  const mealplan   = buildMealPlanByDay(macrosArr, 3, trainFlags);
 
-// tuần hiện tại
-const today = new Date(); today.setHours(0,0,0,0);
-const dowIdx = (today.getDay()+6)%7;
-const monday = new Date(today); monday.setDate(today.getDate()-dowIdx);
+  // Monday của tuần này (giữ nguyên cách tính cũ nếu bạn muốn)
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dowIdx = (today.getDay()+6)%7;
+  const monday = new Date(today); monday.setDate(today.getDate()-dowIdx);
 
-// macro ngày tập để show ở thẻ tóm tắt
-const macrosTraining = calcMacros(calTrain, getMacroPercent(info.goal, false));
+  const saveObj = {
+    profile: info,
+    workout, workoutBase: workout,
+    mealplan, macrosArr,
+    completed: [], completedDates: [],
+    weekNum: 1, weekStartDate: monday.toISOString(),
+    firstTickDate: null, lastProgressUpdate: null, progressUpdated: false,
+    tdeeResult: {
+      BMR: bmr, TDEE: tdee,
+      Calo: plan.train.calories,
+      CaloRest: plan.rest.calories,
+      Protein: plan.train.protein,
+      Carb:    plan.train.carbs,
+      Fat:     plan.train.fat,
+      goal: info.goal, gender: info.gender
+    },
+    // lưu để tái dựng về sau không cần % cũ
+    planMacros: { train: toM(plan.train), rest: toM(plan.rest) }
+  };
 
-const saveObj = {
-  profile: info,
-  workout,
-  workoutBase: workout,
-  mealplan,
-  macrosArr,
-  completed: [],
-  completedDates: [],
-  weekNum: 1,
-  weekStartDate: monday.toISOString(),
-  firstTickDate: null,
-  lastProgressUpdate: null,
-  progressUpdated: false,
-  tdeeResult: {
-    BMR: bmr, TDEE: tdee,
-    Calo: calTrain,           // ngày tập (đã an toàn nếu cần)
-    CaloRest: calRest,        // ngày nghỉ (không < BMR)
-    Protein: macrosTraining.protein,
-    Carb:    macrosTraining.carb,
-    Fat:     macrosTraining.fat,
-    goal: info.goal,
-    gender: info.gender
-  }
-};
 // --- REPLACE đến đây ---
 
 
@@ -915,6 +1014,7 @@ const saveObj = {
     renderDayPlanner(saveObj);
   }
   refreshToolbar(); showSupportIconsNow();
+  delete state.__pendingCreate;
 }
 
 
